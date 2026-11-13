@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bbmalpekgrf04"]
+
+[ext_resource type="PackedScene" uid="uid://ca3mvfkb8k4ng" path="res://Player/player.tscn" id="1_ig7tw"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kjfgv"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kjfgv"]
+
+[node name="Main" type="Node2D" unique_id=2119472241]
+
+[node name="Label" type="Label" parent="." unique_id=1103041713]
+offset_left = 111.0
+offset_top = 50.0
+offset_right = 568.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 32
+text = "Welcome to The Trident team"
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=504492042]
+position = Vector2(568, 530)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=226405635]
+shape = SubResource("WorldBoundaryShape2D_kjfgv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground" unique_id=268358743]
+position = Vector2(0, 88.25)
+scale = Vector2(1339, 177.50002)
+texture = SubResource("PlaceholderTexture2D_kjfgv")
+
+[node name="Player" parent="." unique_id=943826230 instance=ExtResource("1_ig7tw")]
+position = Vector2(369, 404)
