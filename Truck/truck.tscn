@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dgemcm1tnj5ts"]
+
+[ext_resource type="Script" uid="uid://de1pitljg24ww" path="res://Truck/truck.gd" id="1_lakwd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kjfgv"]
+size = Vector3(2, 1.5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kjfgv"]
+size = Vector3(2, 1.5, 5)
+
+[node name="Truck" type="VehicleBody3D" unique_id=361269358]
+script = ExtResource("1_lakwd")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=568714333]
+shape = SubResource("BoxShape3D_kjfgv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1237293329]
+mesh = SubResource("BoxMesh_kjfgv")
+
+[node name="BackLeft" type="VehicleWheel3D" parent="." unique_id=1755730464]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.75, 1.75)
+use_as_traction = true
+
+[node name="BackRight" type="VehicleWheel3D" parent="." unique_id=670752761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.75, 1.75)
+use_as_traction = true
+
+[node name="FrontLeft" type="VehicleWheel3D" parent="." unique_id=631019134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.75, -1.75)
+use_as_steering = true
+
+[node name="FrontRight" type="VehicleWheel3D" parent="." unique_id=1639779007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.75, -1.75)
+use_as_steering = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1690573504]
+transform = Transform3D(1, 0, 0, 0, 0.9715664, 0.23676744, 0, -0.23676744, 0.9715664, 0, 2.1051922, 4.3818426)
