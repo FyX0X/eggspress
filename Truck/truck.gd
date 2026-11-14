@@ -7,7 +7,14 @@ const BRAKE_STRENGTH = 3.0
 
 @export var engine_force_value := 160.0
 @export var spawn_point: Marker3D
+@export var chicken_scene: PackedScene
 
+@export_group("Rotation Control")
+@export var enabled: bool = false
+@export var pitch_torque := 6.0
+@export var side_torque := 6.0
+@export var side_is_roll := true        # true: A/D roll the truck, false: A/D yaw it
+@export var only_when_airborne := true  # avoids fighting the wheels/steering on the ground
 
 var previous_speed := 0.0
 var _steer_target := 0.0
@@ -70,6 +77,8 @@ func _physics_process(delta: float) -> void:
 			engine_force = -engine_force_value
 
 	steering = move_toward(steering, _steer_target, STEER_SPEED * delta)
+	
+	_apply_rotation_control()
 
 	previous_speed = linear_velocity.length()
 
@@ -87,12 +96,43 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	steering = 0.0
 	previous_speed = 0.0
 
+func _apply_rotation_control() -> void:
+	if not enabled:
+		return
+	
+	if only_when_airborne and _wheels_on_ground() > 0:
+		return
+
+	# Same sign convention as your steering: left = positive
+	var pitch_input := Input.get_axis(&"forward", &"backward")  # S = nose up, W = nose down
+	var side_input := Input.get_axis(&"right", &"left")         # A = left, D = right
+
+	var local_torque := Vector3(pitch_input * pitch_torque, 0.0, 0.0)
+	if side_is_roll:
+		local_torque.z = side_input * side_torque   # A = roll left
+	else:
+		local_torque.y = side_input * side_torque   # A = yaw left
+
+	# Convert to world space and scale by mass so tuning doesn't depend on truck weight
+	apply_torque(global_transform.basis * local_torque * mass)
+
+
+func _wheels_on_ground() -> int:
+	var count := 0
+	for child in get_children():
+		if child is VehicleWheel3D and child.is_in_contact():
+			count += 1
+	return count
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"respawn"):
 		_teleport_requested = true
 		for chicken in get_tree().get_nodes_in_group("chickens"):
 			chicken.queue_free()
+	
+	if event.is_action_pressed(&"debug_spawn"):
+		print("[DEBUG] Spawning Chicken")
+		_force_spawn_chicken()
 
 
 func _input(p_input_event: InputEvent) -> void:
@@ -104,3 +144,17 @@ func _input(p_input_event: InputEvent) -> void:
 
 func is_full() -> bool:
 	return chicken_area.chickens.size() >= chicken_limit
+
+
+func try_spawn_chicken() -> bool:
+	if is_full(): # TODO FIXME so i can't spawn more chickens
+		return false
+	_force_spawn_chicken()
+	return true
+
+
+func _force_spawn_chicken() -> void:
+	var chicken := chicken_scene.instantiate() as Chicken
+	get_tree().current_scene.add_child(chicken)
+	# Spawn au-dessus du camion (même point pour load et unload)
+	chicken.global_position = chicken_spawn_point.global_position

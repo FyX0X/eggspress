@@ -1,7 +1,5 @@
 extends Node3D
 
-@export var chicken_scene: PackedScene
-
 var truck_in_zone: Truck = null
 #var spawn_timer: float = 0.0
 
@@ -22,23 +20,8 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and truck_in_zone:
-		if not truck_in_zone.is_full():
-			#spawn_timer = 0.0
-			spawn_chicken()
+		truck_in_zone.try_spawn_chicken()
 
-
-func spawn_chicken() -> bool:
-	if truck_in_zone.is_full(): # TODO FIXME so i can't spawn more chickens
-		return false
-
-	print("Spawning Chicken...")
-	var chicken := chicken_scene.instantiate() as Chicken
-	get_tree().current_scene.add_child(chicken)
-	# Spawn au-dessus du camion (même point pour load et unload)
-	chicken.global_position = truck_in_zone.chicken_spawn_point.global_position
-
-	#_watch_chicken(chicken, truck_in_zone)
-	return true
 
 #func _watch_chicken(chicken: Chicken, truck: Truck) -> void:
 	#await get_tree().create_timer(4.0).timeout

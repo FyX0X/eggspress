@@ -38,6 +38,7 @@ transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 0, -
 [node name="BackLeft" type="VehicleWheel3D" parent="." unique_id=96382226]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, -0.9775649, 1.5997702)
 use_as_traction = true
+wheel_roll_influence = 0.4
 wheel_friction_slip = 1.0
 suspension_travel = 0.3
 suspension_stiffness = 60.0
@@ -48,6 +49,7 @@ metadata/_edit_group_ = true
 [node name="BackRight" type="VehicleWheel3D" parent="." unique_id=1143081003]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1, -0.9775649, 1.5997702)
 use_as_traction = true
+wheel_roll_influence = 0.4
 wheel_friction_slip = 1.0
 suspension_travel = 0.3
 suspension_stiffness = 60.0
@@ -58,6 +60,7 @@ metadata/_edit_group_ = true
 [node name="FrontLeft" type="VehicleWheel3D" parent="." unique_id=1015971627]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, -0.9775649, -1.2775311)
 use_as_steering = true
+wheel_roll_influence = 0.4
 wheel_friction_slip = 1.0
 suspension_travel = 0.3
 suspension_stiffness = 60.0
@@ -68,6 +71,7 @@ metadata/_edit_group_ = true
 [node name="FrontRight" type="VehicleWheel3D" parent="." unique_id=741226358]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1, -0.9775649, -1.2775311)
 use_as_steering = true
+wheel_roll_influence = 0.4
 wheel_friction_slip = 1.0
 suspension_travel = 0.3
 suspension_stiffness = 60.0

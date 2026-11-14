@@ -21,6 +21,7 @@ transform = Transform3D(0.2518037, 0.025939213, -0.96743065, -0.05561234, 0.9983
 mass = 80.0
 engine_force_value = 160.0
 spawn_point = NodePath("../Spawn")
+chicken_scene = ExtResource("2_0xm2m")
 
 [node name="Terrain3D" parent="." unique_id=607388255 instance=ExtResource("3_h2yge")]
 
