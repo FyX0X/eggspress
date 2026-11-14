@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d2ii346eobfwg"]
+
+[ext_resource type="PackedScene" uid="uid://732vhsjlju8r" path="res://assets/models/kenney_nature-kit/Models/GLTF format/log_stack.glb" id="1_d8h0g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hn0oc"]
+size = Vector3(3.746338, 3.4364014, 7.0757446)
+
+[node name="log_stack" type="StaticBody3D" unique_id=1588292742]
+
+[node name="log_stack2" parent="." unique_id=1129221603 instance=ExtResource("1_d8h0g")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1258906848]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09436035, 1.2182007, 0.017913818)
+shape = SubResource("BoxShape3D_hn0oc")

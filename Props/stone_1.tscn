@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://rsgs14hwe1kd"]
+
+[ext_resource type="PackedScene" uid="uid://dj1wnxmgn0c26" path="res://assets/models/kenney_nature-kit/Models/GLTF format/stone_tallA.glb" id="1_b4ef5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hn0oc"]
+size = Vector3(6.8604126, 10.356451, 3.8884277)
+
+[node name="Stone1" type="StaticBody3D" unique_id=1313296219]
+
+[node name="stone_tallA2" parent="." unique_id=727237416 instance=ExtResource("1_b4ef5")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2069353655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.044036865, 4.447739, 0.36169434)
+shape = SubResource("BoxShape3D_hn0oc")
