@@ -1,38 +1,93 @@
 [gd_scene format=3 uid="uid://dgemcm1tnj5ts"]
 
 [ext_resource type="Script" uid="uid://de1pitljg24ww" path="res://Truck/truck.gd" id="1_lakwd"]
+[ext_resource type="PackedScene" uid="uid://npq8vo2x0c2l" path="res://assets/models/camionfinal.glb" id="2_vfagg"]
+[ext_resource type="PackedScene" uid="uid://b7atteshfe28" path="res://Truck/roue.tscn" id="3_y4sod"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kjfgv"]
-size = Vector3(2, 1.5, 5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ltmj"]
+size = Vector3(2.083496, 1.9310303, 2.0014343)
 
-[sub_resource type="BoxMesh" id="BoxMesh_kjfgv"]
-size = Vector3(2, 1.5, 5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_kr4f2"]
+size = Vector3(2.0332031, 0.19091797, 3.2373047)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7sa57"]
+size = Vector3(0.20666504, 1.4517822, 3.1071777)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hmnmk"]
+size = Vector3(2, 1.45, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wfk6r"]
+size = Vector3(2, 1.5, 3)
 
 [node name="Truck" type="VehicleBody3D" unique_id=361269358]
 script = ExtResource("1_lakwd")
+power = 300.0
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=568714333]
-shape = SubResource("BoxShape3D_kjfgv")
+[node name="camionfinal" parent="." unique_id=1200715682 instance=ExtResource("2_vfagg")]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 0, -0.75, -1.2002298)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1237293329]
-mesh = SubResource("BoxMesh_kjfgv")
-
-[node name="BackLeft" type="VehicleWheel3D" parent="." unique_id=1755730464]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.75, 1.75)
+[node name="BackLeft" type="VehicleWheel3D" parent="." unique_id=96382226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.8, 1.5997702)
 use_as_traction = true
+suspension_stiffness = 40.0
+damping_compression = 2.0
+metadata/_edit_group_ = true
 
-[node name="BackRight" type="VehicleWheel3D" parent="." unique_id=670752761]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.75, 1.75)
+[node name="roue" parent="BackLeft" unique_id=758120875 instance=ExtResource("3_y4sod")]
+
+[node name="BackRight" type="VehicleWheel3D" parent="." unique_id=1143081003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.8, 1.5997702)
 use_as_traction = true
+suspension_stiffness = 40.0
+damping_compression = 2.0
+metadata/_edit_group_ = true
 
-[node name="FrontLeft" type="VehicleWheel3D" parent="." unique_id=631019134]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.75, -1.75)
-use_as_steering = true
+[node name="roue" parent="BackRight" unique_id=933352407 instance=ExtResource("3_y4sod")]
 
-[node name="FrontRight" type="VehicleWheel3D" parent="." unique_id=1639779007]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.75, -1.75)
+[node name="FrontLeft" type="VehicleWheel3D" parent="." unique_id=1015971627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.8, -1.2775311)
 use_as_steering = true
+suspension_stiffness = 40.0
+damping_compression = 2.0
+metadata/_edit_group_ = true
+
+[node name="roue" parent="FrontLeft" unique_id=153578737 instance=ExtResource("3_y4sod")]
+
+[node name="FrontRight" type="VehicleWheel3D" parent="." unique_id=741226358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.8, -1.2775311)
+use_as_steering = true
+suspension_stiffness = 40.0
+damping_compression = 2.0
+metadata/_edit_group_ = true
+
+[node name="roue" parent="FrontRight" unique_id=824314654 instance=ExtResource("3_y4sod")]
+
+[node name="CabinCollision" type="CollisionShape3D" parent="." unique_id=1627325818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12225342, -1.0261422)
+shape = SubResource("BoxShape3D_0ltmj")
+
+[node name="BottomCollision" type="CollisionShape3D" parent="." unique_id=2018275301]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 1.2997702)
+shape = SubResource("BoxShape3D_kr4f2")
+
+[node name="LeftCollision" type="CollisionShape3D" parent="." unique_id=23197219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 0, 1.2997702)
+shape = SubResource("BoxShape3D_7sa57")
+
+[node name="RightCollision" type="CollisionShape3D" parent="." unique_id=625407261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, 0, 1.2997702)
+shape = SubResource("BoxShape3D_7sa57")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=634637893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.79977)
+shape = SubResource("BoxShape3D_hmnmk")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1690573504]
-transform = Transform3D(1, 0, 0, 0, 0.7889933, 0.6144018, 0, -0.6144018, 0.7889933, 0, 3.6744108, 1.7479162)
+transform = Transform3D(1, 0, 0, 0, 0.7889933, 0.6144018, 0, -0.6144018, 0.7889933, 0, 3.6744108, 4.76101)
+
+[node name="ChickenArea" type="Area3D" parent="." unique_id=849767102]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3232042)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChickenArea" unique_id=721744566]
+shape = SubResource("BoxShape3D_wfk6r")

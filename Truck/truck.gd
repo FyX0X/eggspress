@@ -1,8 +1,8 @@
 class_name Truck
 extends VehicleBody3D
 
-var steer: float = 0.9
-var power: float = 400
+@export var steer: float = 0.9
+@export var power: float = 400
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

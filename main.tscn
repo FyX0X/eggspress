@@ -2,20 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://dgemcm1tnj5ts" path="res://Truck/truck.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cbmxnb833xyuo" path="res://Chicken/chicken.tscn" id="2_0xm2m"]
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kjfgv"]
+[ext_resource type="PackedScene" uid="uid://dobxr6r73hyqi" path="res://Map/Map.tscn" id="3_h2yge"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_kjfgv"]
 
 [node name="Main" type="Node3D" unique_id=1107903929]
 
 [node name="Truck" parent="." unique_id=361269358 instance=ExtResource("1_ig7tw")]
-
-[node name="Ground" type="StaticBody3D" parent="." unique_id=388851795]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1589486616]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-shape = SubResource("WorldBoundaryShape3D_kjfgv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=809355794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
@@ -29,10 +22,7 @@ mesh = SubResource("CylinderMesh_kjfgv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6992435, 0, 5.344733)
 mesh = SubResource("CylinderMesh_kjfgv")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1281155881]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.816998, 0)
-omni_range = 137.159
-omni_attenuation = 0.259
-
 [node name="Chicken" parent="." unique_id=35474579 instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.354415, 0)
+
+[node name="Map" parent="." unique_id=1859656141 instance=ExtResource("3_h2yge")]
