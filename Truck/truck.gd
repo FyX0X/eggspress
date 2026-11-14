@@ -5,7 +5,7 @@ const STEER_SPEED = 1.5
 const STEER_LIMIT = 0.9
 const BRAKE_STRENGTH = 3.0
 
-@export var engine_force_value := 80.0
+@export var engine_force_value := 160.0
 
 # var turbometer: Range
 # var turbo_animator: AnimationPlayer
