@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bbmalpekgrf04"]
 
 [ext_resource type="PackedScene" uid="uid://dgemcm1tnj5ts" path="res://Truck/truck.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cbmxnb833xyuo" path="res://Chicken/chicken.tscn" id="2_0xm2m"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kjfgv"]
 
@@ -32,3 +33,6 @@ mesh = SubResource("CylinderMesh_kjfgv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.816998, 0)
 omni_range = 137.159
 omni_attenuation = 0.259
+
+[node name="Chicken" parent="." unique_id=35474579 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.354415, 0)

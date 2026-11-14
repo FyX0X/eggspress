@@ -1,3 +1,21 @@
 [gd_scene format=3 uid="uid://cbmxnb833xyuo"]
 
-[node name="Chicken" type="Node3D" unique_id=960923509]
+[ext_resource type="Script" uid="uid://3v5o0ax7scek" path="res://Chicken/chicken.gd" id="1_4le88"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m3uvj"]
+radius = 0.25
+height = 0.7
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3qp2o"]
+radius = 0.25
+height = 0.7
+
+[node name="Chicken" type="RigidBody3D" unique_id=35474579]
+script = ExtResource("1_4le88")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=674620521]
+shape = SubResource("CapsuleShape3D_m3uvj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=760849247]
+mesh = SubResource("CapsuleMesh_3qp2o")
