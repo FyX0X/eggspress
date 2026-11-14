@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://mvwy8hud7cus"]
 
-[ext_resource type="Script" uid="uid://b0ynvjj1hfb8i" path="res://Upgrades/upgrade.gd" id="1_x7q64"]
+[ext_resource type="Script" uid="uid://bd73trf1jikju" path="res://Upgrades/upgrade.gd" id="1_x7q64"]
 
 [node name="Upgrade" type="Control" unique_id=2068223302]
 layout_mode = 3
@@ -10,3 +10,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x7q64")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1812861209]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=613452728]
+layout_mode = 2
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer" unique_id=292683691]
+layout_mode = 2
+
+[node name="PriceLabel" type="Label" parent="VBoxContainer" unique_id=29333629]
+layout_mode = 2
+
+[node name="BuyButton" type="Button" parent="VBoxContainer" unique_id=580742036]
+layout_mode = 2
