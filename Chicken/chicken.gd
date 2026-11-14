@@ -24,10 +24,11 @@ var _time_left: float = 0.0
 var visual_scale: Vector3
 
 func _ready():
-	lock_rotation = true
+	lock_rotation = false
 	can_sleep = false
 	pick_new_direction()
 	visual_scale = visual.scale
+	add_to_group("chickens")
 
 func _physics_process(delta):
 	

@@ -6,22 +6,21 @@ const STEER_LIMIT = 0.9
 const BRAKE_STRENGTH = 3.0
 
 @export var engine_force_value := 160.0
+@export var spawn_point: Marker3D
 
-# var turbometer: Range
-# var turbo_animator: AnimationPlayer
-
-var previous_speed := linear_velocity.length()
-var turbo_active := false
-var headlights_active := false
+var previous_speed := 0.0
 var _steer_target := 0.0
-var is_compatibility := RenderingServer.get_current_rendering_method() == "gl_compatibility"
+var _teleport_requested := false
 
-@onready var desired_engine_pitch: float = $EngineSound.pitch_scale
 @onready var engine_sound: AudioStreamPlayer3D = $EngineSound
+@onready var desired_engine_pitch: float = engine_sound.pitch_scale
 
 
 func _ready() -> void:
-	pass
+	previous_speed = linear_velocity.length()
+	assert(spawn_point)
+	
+	_teleport_requested = true
 	#assert(turbometer)
 	#assert(turbo_animator)
 
@@ -68,6 +67,27 @@ func _physics_process(delta: float) -> void:
 	steering = move_toward(steering, _steer_target, STEER_SPEED * delta)
 
 	previous_speed = linear_velocity.length()
+
+func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	if not _teleport_requested:
+		return
+	_teleport_requested = false
+
+	var target := spawn_point.global_transform
+	target.basis = target.basis.orthonormalized()
+
+	state.transform = target
+	state.linear_velocity = Vector3.ZERO
+	state.angular_velocity = Vector3.ZERO
+	steering = 0.0
+	previous_speed = 0.0
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"respawn"):
+		_teleport_requested = true
+		for chicken in get_tree().get_nodes_in_group("chickens"):
+			chicken.queue_free()
 
 
 func _input(p_input_event: InputEvent) -> void:
