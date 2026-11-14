@@ -14,7 +14,7 @@ ambient_light_energy = 0.3
 [node name="Main" type="Node3D" unique_id=1107903929]
 
 [node name="Truck" parent="." unique_id=361269358 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(0.2518037, 0.025939213, -0.96743065, -0.05561234, 0.99837685, 0.01229413, 0.96617925, 0.050705377, 0.25283754, -159.13245, 41.243053, 410.8501)
+transform = Transform3D(0.2518037, 0.025939213, -0.96743065, -0.05561234, 0.99837685, 0.01229413, 0.96617925, 0.050705377, 0.25283754, -159.13245, 4.0392036, 410.8501)
 mass = 80.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=809355794]
@@ -36,3 +36,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.354415, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1443240367]
 environment = SubResource("Environment_hn0oc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1893577449]
+transform = Transform3D(1, 0, 0, 0, -0.50000006, 0.8660254, 0, -0.8660254, -0.50000006, 0, 161, 0)
