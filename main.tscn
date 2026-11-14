@@ -31,3 +31,4 @@ mesh = SubResource("CylinderMesh_kjfgv")
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1281155881]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.816998, 0)
 omni_range = 137.159
+omni_attenuation = 0.259

@@ -1,3 +1,4 @@
+class_name Truck
 extends VehicleBody3D
 
 var steer: float = 0.9
