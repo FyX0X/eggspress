@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://cbmxnb833xyuo"]
 
 [ext_resource type="Script" uid="uid://3v5o0ax7scek" path="res://Chicken/chicken.gd" id="1_4le88"]
+[ext_resource type="PackedScene" uid="uid://cmt46poexlrid" path="res://Chicken/explosion.tscn" id="2_3qp2o"]
 [ext_resource type="PackedScene" uid="uid://dxuo37ni02rxa" path="res://assets/models/kenney_cube-pets_1.0/Models/GLB format/animal-chick.glb" id="2_m3uvj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4sod"]
 size = Vector3(0.58032227, 0.6057129, 1)
 
-[node name="Chicken" type="RigidBody3D" unique_id=35474579]
+[node name="Chicken" type="RigidBody3D" unique_id=35474579 node_paths=PackedStringArray("visual")]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_4le88")
+explosion_scene = ExtResource("2_3qp2o")
+visual = NodePath("animal-chick2")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=674620521]
