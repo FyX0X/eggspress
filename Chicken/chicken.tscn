@@ -1,21 +1,18 @@
 [gd_scene format=3 uid="uid://cbmxnb833xyuo"]
 
 [ext_resource type="Script" uid="uid://3v5o0ax7scek" path="res://Chicken/chicken.gd" id="1_4le88"]
+[ext_resource type="PackedScene" uid="uid://dxuo37ni02rxa" path="res://assets/models/kenney_cube-pets_1.0/Models/GLB format/animal-chick.glb" id="2_m3uvj"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m3uvj"]
-radius = 0.25
-height = 0.7
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_3qp2o"]
-radius = 0.25
-height = 0.7
+[sub_resource type="SphereShape3D" id="SphereShape3D_0xm2m"]
+radius = 0.3733453
 
 [node name="Chicken" type="RigidBody3D" unique_id=35474579]
 script = ExtResource("1_4le88")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=674620521]
-shape = SubResource("CapsuleShape3D_m3uvj")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36206055, 0)
+shape = SubResource("SphereShape3D_0xm2m")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=760849247]
-mesh = SubResource("CapsuleMesh_3qp2o")
+[node name="animal-chick2" parent="." unique_id=1943369241 instance=ExtResource("2_m3uvj")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

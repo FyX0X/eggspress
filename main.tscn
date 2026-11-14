@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bbmalpekgrf04"]
 
 [ext_resource type="PackedScene" uid="uid://dgemcm1tnj5ts" path="res://Truck/truck.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cbmxnb833xyuo" path="res://Chicken/chicken.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cnbnwoe6yhv18" path="res://Map/terrain_3d.tscn" id="3_h2yge"]
 
 [sub_resource type="Environment" id="Environment_hn0oc"]
@@ -21,3 +22,20 @@ environment = SubResource("Environment_hn0oc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1893577449]
 transform = Transform3D(1, 0, 0, 0, -0.50000006, 0.8660254, 0, -0.8660254, -0.50000006, 0, 161, 0)
+
+[node name="Chickens" type="Node3D" parent="." unique_id=1591232188]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -181.15634, 0.26628256, 381.59467)
+
+[node name="Chicken" parent="Chickens" unique_id=35474579 instance=ExtResource("2_0xm2m")]
+
+[node name="Chicken2" parent="Chickens" unique_id=1255721274 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.4158936)
+
+[node name="Chicken3" parent="Chickens" unique_id=198542394 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.216278, 0, 0)
+
+[node name="Chicken4" parent="Chickens" unique_id=1364559339 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5417786, 0, 0)
+
+[node name="Chicken5" parent="Chickens" unique_id=1005583798 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1686058, -2.596466)
