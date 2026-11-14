@@ -2,15 +2,13 @@ extends Node3D
 
 @export var chicken_scene: PackedScene
 
-@onready var loading_zone: Area3D = $LoadingZone
-
 var truck_in_zone: Truck = null
 var is_loading: bool = false
 var spawn_timer: float = 0.0
 
 func _ready() -> void:
-	loading_zone.body_entered.connect(_on_body_entered)
-	loading_zone.body_exited.connect(_on_body_exited)
+	self.body_entered.connect(_on_body_entered)
+	self.body_exited.connect(_on_body_exited)
 
 func _process(delta: float) -> void:
 	if not is_loading or truck_in_zone == null:

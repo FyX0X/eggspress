@@ -3,7 +3,6 @@ extends Node3D
 @export var price_per_chicken: int = 15
 @export var fly_duration: float = 0.9
 
-@onready var unloading_zone: Area3D = $UnloadingZone
 @onready var delivery_point: Marker3D = $DeliveryPoint
 
 var truck_in_zone: Truck = null
@@ -11,8 +10,8 @@ var is_unloading: bool = false
 var unload_timer: float = 0.0
 
 func _ready() -> void:
-	unloading_zone.body_entered.connect(_on_body_entered)
-	unloading_zone.body_exited.connect(_on_body_exited)
+	self.body_entered.connect(_on_body_entered)
+	self.body_exited.connect(_on_body_exited)
 
 func _process(delta: float) -> void:
 	if not is_unloading or truck_in_zone == null:
