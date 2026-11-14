@@ -3,12 +3,12 @@ extends Control
 # --- Références UI permanente ---
 @onready var money_label: Label = $MoneyLabel
 @onready var timer_label: Label = $TimerLabel
-@onready var delivery_lab: Label = $DeliveryLab
-@onready var capacity_label: Label = $BottomRight/CapacityL
-@onready var speed_label: Label = $BottomRight/SpeedLab
+@onready var delivery_lab: Label = $DeliveryLabel
+@onready var capacity_label: Label = $BottomRight/CapacityLabel
+@onready var speed_label: Label = $BottomRight/SpeedLabel
 
 # --- Référence UI conditionnelle (Ferme) ---
-@onready var farm_ui: VBoxContainer = $FarmUI
+@onready var farm_ui: VBoxContainer = $FarmHUD
 
 # --- Référence à la scène des cartes ---
 @export var upgrade_card_scene: PackedScene
