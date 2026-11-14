@@ -9,6 +9,7 @@
 [node name="Main" type="Node3D" unique_id=1107903929]
 
 [node name="Truck" parent="." unique_id=361269358 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8398314, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=809355794]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
@@ -23,6 +24,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6992435, 0, 5.344733)
 mesh = SubResource("CylinderMesh_kjfgv")
 
 [node name="Chicken" parent="." unique_id=35474579 instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.354415, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0246034, 1.354415, 0)
 
 [node name="Map" parent="." unique_id=1859656141 instance=ExtResource("3_h2yge")]
