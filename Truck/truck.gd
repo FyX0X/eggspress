@@ -8,17 +8,22 @@ const BRAKE_STRENGTH = 3.0
 @export var engine_force_value := 160.0
 @export var spawn_point: Marker3D
 
+
 var previous_speed := 0.0
 var _steer_target := 0.0
 var _teleport_requested := false
 
 @onready var engine_sound: AudioStreamPlayer3D = $EngineSound
 @onready var desired_engine_pitch: float = engine_sound.pitch_scale
+@onready var chicken_spawn_point: Marker3D = $ChickenSpawnPoint
+@onready var chicken_area: ChickenArea = $ChickenArea
+var chicken_limit: int = 4
 
 
 func _ready() -> void:
 	previous_speed = linear_velocity.length()
 	assert(spawn_point)
+	assert(is_instance_valid(chicken_spawn_point))
 	
 	_teleport_requested = true
 	#assert(turbometer)
@@ -95,3 +100,7 @@ func _input(p_input_event: InputEvent) -> void:
 
 	#if p_input_event.is_action_pressed(&"honk"):
 		#$HonkSound.play() TODO
+
+
+func is_full() -> bool:
+	return chicken_area.chickens.size() >= chicken_limit

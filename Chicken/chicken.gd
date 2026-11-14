@@ -29,6 +29,7 @@ func _ready():
 	pick_new_direction()
 	visual_scale = visual.scale
 	add_to_group("chickens")
+	light_fuse()
 
 func _physics_process(delta):
 	

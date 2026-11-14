@@ -1,3 +1,4 @@
+class_name ChickenArea
 extends Area3D
 
 @export var truck: VehicleBody3D
@@ -7,7 +8,7 @@ extends Area3D
 @export var max_interval := 12.0   # time between clucks with a single chicken
 @export var full_bed_count := 10  # chicken count at which min_interval applies
 
-var _chickens: Array[Chicken] = []
+var chickens: Array[Chicken] = []
 var _cluck_timer := 0.0
 
 func _ready() -> void:
@@ -19,18 +20,18 @@ func _on_body_entered(body: Node3D) -> void:
 	if body is Chicken:
 		body.carrier = truck
 		body.cancel_fuse()
-		_chickens.append(body)
+		chickens.append(body)
 		print("[ChickenArea] Added Chicken")
 
 func _on_body_exited(body: Node3D) -> void:
 	if body is Chicken:
 		body.carrier = null
 		body.light_fuse()
-		_chickens.erase(body)
+		chickens.erase(body)
 		print("[ChickenArea] Removed Chicken")
 
 func _process(delta: float) -> void:
-	if _chickens.is_empty() or cluck_sounds.is_empty():
+	if chickens.is_empty() or cluck_sounds.is_empty():
 		return
 
 	_cluck_timer -= delta
@@ -38,14 +39,14 @@ func _process(delta: float) -> void:
 		return
 
 	# More chickens in the bed means more frequent clucks
-	var fullness := clampf(float(_chickens.size()) / full_bed_count, 0.0, 1.0)
+	var fullness := clampf(float(chickens.size()) / full_bed_count, 0.0, 1.0)
 	_cluck_timer = lerpf(max_interval, min_interval, fullness) * randf_range(0.7, 1.3)
 
 	if cluck_player.playing:
 		return
 
 	# Cluck from a random chicken's position so it doesn't always come from the truck centre
-	var source: Chicken = _chickens.pick_random()
+	var source: Chicken = chickens.pick_random()
 	if is_instance_valid(source):
 		cluck_player.global_position = source.global_position
 
