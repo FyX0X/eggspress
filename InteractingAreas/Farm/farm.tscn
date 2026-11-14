@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cy7001j3yvkhp"]
+
+[ext_resource type="Script" uid="uid://d22spkm5bp74y" path="res://InteractingAreas/Farm/farm.gd" id="1_o766r"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2bpps"]
+height = 10.0
+radius = 25.0
+
+[node name="Farm" type="Node3D" unique_id=1702774483]
+script = ExtResource("1_o766r")
+
+[node name="LoadingZone" type="Area3D" parent="." unique_id=1299026096]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadingZone" unique_id=1419128823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("CylinderShape3D_2bpps")
