@@ -26,9 +26,9 @@ window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
-[editor_plugins]
+[filesystem]
 
-enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+import/blender/enabled=false
 
 [input]
 
