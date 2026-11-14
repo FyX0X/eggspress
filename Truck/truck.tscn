@@ -27,7 +27,7 @@ loop_end = 33738
 
 [node name="Truck" type="VehicleBody3D" unique_id=361269358]
 script = ExtResource("1_lakwd")
-engine_force_value = 200.0
+engine_force_value = 300.0
 metadata/_edit_group_ = true
 
 [node name="camionfinal" parent="." unique_id=1200715682 instance=ExtResource("2_vfagg")]

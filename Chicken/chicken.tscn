@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://3v5o0ax7scek" path="res://Chicken/chicken.gd" id="1_4le88"]
 [ext_resource type="PackedScene" uid="uid://dxuo37ni02rxa" path="res://assets/models/kenney_cube-pets_1.0/Models/GLB format/animal-chick.glb" id="2_m3uvj"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_0xm2m"]
-radius = 0.3733453
+[sub_resource type="BoxShape3D" id="BoxShape3D_y4sod"]
+size = Vector3(0.58032227, 0.6057129, 1)
 
 [node name="Chicken" type="RigidBody3D" unique_id=35474579]
 mass = 0.25
@@ -12,8 +12,8 @@ script = ExtResource("1_4le88")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=674620521]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36206055, 0)
-shape = SubResource("SphereShape3D_0xm2m")
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.0032348633, 0.1806714, 0)
+shape = SubResource("BoxShape3D_y4sod")
 
 [node name="animal-chick2" parent="." unique_id=1943369241 instance=ExtResource("2_m3uvj")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
