@@ -6,11 +6,23 @@
 height = 10.0
 radius = 25.0
 
-[node name="Farm" type="Node3D" unique_id=1702774483]
+[sub_resource type="CylinderMesh" id="CylinderMesh_o766r"]
+top_radius = 25.0
+bottom_radius = 25.0
+height = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lj8th"]
+transparency = 1
+albedo_color = Color(0.85466754, 0, 0.16688582, 0.28627452)
+
+[node name="Farm" type="Area3D" unique_id=501583087]
 script = ExtResource("1_o766r")
 
-[node name="LoadingZone" type="Area3D" parent="." unique_id=1299026096]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadingZone" unique_id=1419128823]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1419128823]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 shape = SubResource("CylinderShape3D_2bpps")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=214582327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+mesh = SubResource("CylinderMesh_o766r")
+surface_material_override/0 = SubResource("StandardMaterial3D_lj8th")

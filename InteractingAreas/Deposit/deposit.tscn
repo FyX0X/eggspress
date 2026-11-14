@@ -2,5 +2,27 @@
 
 [ext_resource type="Script" uid="uid://bbkwlehh4bv6y" path="res://InteractingAreas/Deposit/deposit.gd" id="1_acb0l"]
 
-[node name="Deposit" type="Node3D" unique_id=355979637]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2bpps"]
+height = 10.0
+radius = 25.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2bpps"]
+top_radius = 25.0
+bottom_radius = 25.0
+height = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72yun"]
+transparency = 1
+albedo_color = Color(0.08627451, 1, 0.21568628, 0.1882353)
+
+[node name="Deposit" type="Area3D" unique_id=1462271471]
 script = ExtResource("1_acb0l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1737212702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("CylinderShape3D_2bpps")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=462416286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+mesh = SubResource("CylinderMesh_2bpps")
+surface_material_override/0 = SubResource("StandardMaterial3D_72yun")
