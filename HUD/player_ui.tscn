@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cdh21hl5ljegd"]
+
+[node name="PlayerHUD" type="Control" unique_id=191648882]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoneyLabel" type="Label" parent="." unique_id=1122825154]
+layout_mode = 1
+offset_right = 1.0
+offset_bottom = 23.0
+text = "Test Money"
+
+[node name="TimerLabel" type="Label" parent="." unique_id=847829016]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.5
+offset_right = 22.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Timer"
+horizontal_alignment = 1
+
+[node name="DeliveryLabel" type="Label" parent="." unique_id=2145112095]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Delivery"
+horizontal_alignment = 2
+
+[node name="BottomRight" type="VBoxContainer" parent="." unique_id=915083000]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="CapacityLabel" type="Label" parent="BottomRight" unique_id=529925098]
+layout_mode = 2
+text = "Capacity"
+
+[node name="SpeedLabel" type="Label" parent="BottomRight" unique_id=617076604]
+layout_mode = 2
+text = "Speed"
+
+[node name="FarmHUD" type="VBoxContainer" parent="." unique_id=1971313185]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
