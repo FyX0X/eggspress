@@ -3,18 +3,58 @@ extends Node
 signal money_changed(new_amount: int)
 signal chicken_delivered_changed(new_amount: int)
 signal win
+signal upgrade_purchased(upgrade: Upgrade)
 
 var money : int = 0
 var chicken_value : int = 10
 var chicken_delivered: int = 0
 var chicken_delivery_total: int = 75
 var truck: Truck = null
+var player_hud: PlayerHUD = null
 
 var time_elapsed: float = 0.0
 var is_timer_running: bool = true
 
-func _init() -> void:
-	pass
+var unloading_speed: float = 1.0
+
+
+# UPGRADES
+
+class Upgrade:
+	var id: String
+	var name: String
+	var description: String
+	var price: int
+	var level: int = 0
+	var max_level: int = 1
+	var apply: Callable  # what happens on purchase
+
+	func _init(p_id, p_name, p_desc, p_price, p_max_level, p_apply):
+		id = p_id
+		name = p_name
+		description = p_desc
+		price = p_price
+		max_level = p_max_level
+		apply = p_apply
+
+
+var upgrades: Array[Upgrade] = []
+
+func _ready() -> void:
+	upgrades = [
+		Upgrade.new("bridge", "Unlock Bridge", "Adds a bridge over the canion",
+			200, 1, func(): print("todo unlock bridge")),
+		Upgrade.new("bigger_load", "Bigger Load", "+1 chicken per trip",
+			20, 5, func(): truck.capacity *= 2; truck.chicken_area.chickens_changed.emit(truck.get_chicken_count())),
+		Upgrade.new("better_value", "Premium Chicken", "+5 per chicken",
+			20, 10, func(): chicken_value += 5),
+		Upgrade.new("waterproof", "Water Proof", "Makes engine waterproof",
+			120, 1, func(): truck.waterproof = true),
+	]
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_add_money"):
+		_change_money(10000)
 
 func _process(delta: float) -> void:
 	if is_timer_running:
@@ -56,4 +96,26 @@ func remove_money(price : int) -> bool:
 func deliver_chickens(amount : int):
 	_change_money(amount * chicken_value)
 	_change_delivered(amount)
-		
+	
+	
+## UPGRADES
+func try_buy_upgrade(id: String) -> bool:
+	var upg := get_upgrade(id)
+	if upg == null:
+		return false
+	if upg.level >= upg.max_level:
+		return false
+	if not remove_money(upg.price):
+		return false
+	
+	upg.level += 1
+	upg.apply.call()
+	upg.price = int(upg.price * 1.5)  # optional price scaling
+	upgrade_purchased.emit(upg)
+	return true
+
+func get_upgrade(id: String) -> Upgrade:
+	for u in upgrades:
+		if u.id == id:
+			return u
+	return null

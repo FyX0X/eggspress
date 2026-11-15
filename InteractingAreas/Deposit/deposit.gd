@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 			is_unloading = false
 			print("Déchargement terminé")
 			return
-		unload_timer = 1.0 / UpgradeManager.get_unload_speed()
+		unload_timer = 1.0 / GameManager.unloading_speed
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and truck_in_zone:

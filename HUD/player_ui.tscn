@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://w61mowmn718r" path="res://HUD/player_hud.gd" id="1_uiyku"]
 [ext_resource type="Texture2D" uid="uid://x3n32bfabsc" path="res://assets/images/orange_enginelight.png" id="2_qyjhn"]
+[ext_resource type="Script" uid="uid://eb2jyhfvqkif" path="res://HUD/farm_hud.gd" id="2_umdxn"]
 [ext_resource type="Script" uid="uid://ciuxb7tuiafok" path="res://HUD/engine_light.gd" id="3_qck6n"]
 
 [node name="PlayerHUD" type="Control" unique_id=191648882]
@@ -71,6 +72,11 @@ offset_top = -20.0
 offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
+script = ExtResource("2_umdxn")
+
+[node name="Label" type="Label" parent="FarmHUD" unique_id=206551401]
+layout_mode = 2
+text = "Upgrades:"
 
 [node name="EngineLight" type="TextureRect" parent="." unique_id=1436374205]
 layout_mode = 1

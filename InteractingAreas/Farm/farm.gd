@@ -33,9 +33,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body is Truck:
 		truck_in_zone = body
+		GameManager.player_hud.show_farm_ui()
 		print("[Farm] truck entered.")
 
 func _on_body_exited(body: Node3D) -> void:
 	if body == truck_in_zone:
 		truck_in_zone = null
+		GameManager.player_hud.hide_farm_ui()
 		print("[Farm] truck exited.")
