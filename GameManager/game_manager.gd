@@ -56,8 +56,11 @@ func _ready() -> void:
 	]
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("debug_add_money"):
+	if event.is_action_pressed("debug_add_money") and OS.is_debug_build():
 		_change_money(10000)
+	if event.is_action_pressed(&"debug_spawn") and OS.is_debug_build():
+		print("[DEBUG] Spawning Chicken")
+		truck._force_spawn_chicken()
 	if event.is_action_pressed("ui_cancel"):
 		_reset_game()
 		get_tree().change_scene_to_file("res://Menu/main_menu.tscn")

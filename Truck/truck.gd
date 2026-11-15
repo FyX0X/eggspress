@@ -144,10 +144,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		_teleport_requested = true
 		for chicken in get_tree().get_nodes_in_group("chickens"):
 			chicken.queue_free()
-	
-	if event.is_action_pressed(&"debug_spawn"):
-		print("[DEBUG] Spawning Chicken")
-		_force_spawn_chicken()
 
 
 func get_top_chicken() -> Chicken:
