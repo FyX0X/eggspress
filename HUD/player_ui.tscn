@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://eb2jyhfvqkif" path="res://HUD/farm_hud.gd" id="2_umdxn"]
 [ext_resource type="Script" uid="uid://ciuxb7tuiafok" path="res://HUD/engine_light.gd" id="3_qck6n"]
 [ext_resource type="Texture2D" uid="uid://c33wx7d5pnrfy" path="res://assets/images/keyboard_e.png" id="5_h0dvq"]
+[ext_resource type="Texture2D" uid="uid://c7fgenybmfq52" path="res://assets/images/keyboard_r.png" id="6_8vlr3"]
+[ext_resource type="Texture2D" uid="uid://dnmyopnn6f1i" path="res://assets/images/keyboard_space.png" id="7_6k8f0"]
+[ext_resource type="Texture2D" uid="uid://7lux7ejc1b71" path="res://assets/images/mouse_left_click_move.png" id="8_db0ae"]
 
 [node name="PlayerHUD" type="Control" unique_id=191648882]
 layout_mode = 3
@@ -137,4 +140,55 @@ layout_mode = 2
 texture = ExtResource("5_h0dvq")
 
 [node name="ActionLabel" type="Label" parent="InteractionPrompt" unique_id=1423679067]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=12563759]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -127.0
+offset_right = 294.0
+grow_vertical = 0
+
+[node name="Respawn" type="VBoxContainer" parent="HBoxContainer" unique_id=1100038048]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Respawn" unique_id=1515494431]
+layout_mode = 2
+texture = ExtResource("6_8vlr3")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/Respawn" unique_id=524363840]
+layout_mode = 2
+text = "Respawn   "
+
+[node name="Handbrake" type="VBoxContainer" parent="HBoxContainer" unique_id=1295568563]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Handbrake" unique_id=946588301]
+layout_mode = 2
+texture = ExtResource("7_6k8f0")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/Handbrake" unique_id=2138489036]
+layout_mode = 2
+text = "Handbrake   "
+
+[node name="Look Around" type="VBoxContainer" parent="HBoxContainer" unique_id=1161989396]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Look Around" unique_id=306413575]
+layout_mode = 2
+texture = ExtResource("8_db0ae")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/Look Around" unique_id=772385561]
+layout_mode = 2
+text = "Look Around"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=407114105]
 layout_mode = 2

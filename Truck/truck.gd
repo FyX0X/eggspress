@@ -5,6 +5,8 @@ extends VehicleBody3D
 signal engine_drowned_changed(drowned: bool)
 
 
+const CHICKEN_LAYER: int = 4
+
 # --- Tuning ---
 @export_group("Tuning")
 @export var max_engine_force: float = 150.0
@@ -198,7 +200,11 @@ func _give_distance_reward() -> void:
 	GameManager._change_money(distance * get_chicken_count() * distance_reward)
 
 
-func _on_body_entered(_body: Node) -> void:
+func _on_body_entered(body: Node) -> void:
+	# Layer bitmask check — body.collision_layer is a bitmask
+	if body.collision_layer & (1 << (CHICKEN_LAYER - 1)):
+		return
+		
 	# Godot gives us the *current* velocity here, not pre-impact velocity,
 	# because the solver already resolved the collision. For a decent approximation
 	# we use the velocity magnitude we had going into the frame, cached below.
