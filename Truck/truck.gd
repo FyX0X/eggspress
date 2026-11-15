@@ -13,6 +13,7 @@ const BRAKE_STRENGTH = 3.0
 @export var engine_force_value := 160.0
 @export var spawn_point: Marker3D
 @export var chicken_scene: PackedScene
+@export var distance_reward: float = 0.01
 
 @export_group("Rotation Control")
 @export var enabled: bool = false
@@ -142,6 +143,7 @@ func _wheels_on_ground() -> int:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"respawn"):
 		repair_engine()
+		_give_distance_reward()
 		_teleport_requested = true
 		for chicken in get_tree().get_nodes_in_group("chickens"):
 			chicken.queue_free()
@@ -201,3 +203,7 @@ func repair_engine() -> void:
 	engine_drowned = false
 	engine_sound.stream_paused = false
 	engine_drowned_changed.emit(false)
+
+func _give_distance_reward() -> void:
+	var distance: float = (global_position - spawn_point.global_position).length()
+	GameManager._change_money(distance * get_chicken_count() * distance_reward)

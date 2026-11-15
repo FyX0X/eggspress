@@ -38,7 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -184.21684, 0, 399.37595)
 collision_layer = 2
 
 [node name="Deposit" parent="." unique_id=1462271471 instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.22215, 6.049797, -219.8019)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.22215, -0.5246577, -219.8019)
 collision_layer = 2
 
 [node name="Spawn" type="Marker3D" parent="." unique_id=538182976]

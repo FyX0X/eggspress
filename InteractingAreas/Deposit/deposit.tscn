@@ -34,4 +34,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_72yun")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.1259375, 0)
 
 [node name="factory2" parent="." unique_id=112685226 instance=ExtResource("2_yq7ul")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 6.405391, 0)
