@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://chl4a5j0q4ulh" path="res://InteractingAreas/Deposit/deposit.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://b42cd4w50aosh" path="res://HUD/hud.tscn" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://dxuo37ni02rxa" path="res://assets/models/kenney_cube-pets_1.0/Models/GLB format/animal-chick.glb" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://lm06ptyuvfsb" path="res://assets/models/low+poly+farm2.glb" id="9_kek77"]
 
 [sub_resource type="Environment" id="Environment_hn0oc"]
 ambient_light_source = 3
@@ -102,3 +103,6 @@ transform = Transform3D(0.4472289, 0, 0.89441955, 0, 1, 0, -0.89441955, 0, 0.447
 
 [node name="animal-chick4" parent="." unique_id=482539956 instance=ExtResource("8_5vw27")]
 transform = Transform3D(-0.43647432, 0, 0.8997167, 0, 1, 0, -0.8997167, 0, -0.43647432, -175.56711, -0.42265272, 427.0757)
+
+[node name="low+poly+farm2" parent="." unique_id=1001209114 instance=ExtResource("9_kek77")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -186.14284, -4.62708, 431.09503)
