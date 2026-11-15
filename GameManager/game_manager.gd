@@ -8,7 +8,7 @@ signal upgrade_purchased(upgrade: Upgrade)
 var money : int
 var chicken_value : int
 var chicken_delivered: int
-var chicken_delivery_total: int = 75
+var chicken_delivery_total: int = 25
 var truck: Truck = null
 var player_hud: PlayerHUD = null
 var bridge: Bridge = null
