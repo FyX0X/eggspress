@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and truck_in_zone:
+		print("Bennnnnn there")
 		truck_in_zone.try_spawn_chicken()
 
 

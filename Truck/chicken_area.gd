@@ -20,6 +20,9 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Chicken:
+		if GameManager.truck.is_full():
+			body.explode()
+			return
 		body.carrier = truck
 		body.cancel_fuse()
 		chickens.append(body)

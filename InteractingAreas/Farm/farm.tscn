@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cy7001j3yvkhp"]
 
 [ext_resource type="Script" uid="uid://d22spkm5bp74y" path="res://InteractingAreas/Farm/farm.gd" id="1_o766r"]
-[ext_resource type="PackedScene" uid="uid://cbmxnb833xyuo" path="res://Chicken/chicken.tscn" id="2_lj8th"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2bpps"]
 height = 10.0
@@ -17,8 +16,9 @@ transparency = 1
 albedo_color = Color(0.85466754, 0, 0.16688582, 0.28627452)
 
 [node name="Farm" type="Area3D" unique_id=501583087]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_o766r")
-chicken_scene = ExtResource("2_lj8th")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1419128823]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)

@@ -16,6 +16,8 @@ transparency = 1
 albedo_color = Color(0.08627451, 1, 0.21568628, 0.1882353)
 
 [node name="Deposit" type="Area3D" unique_id=1462271471]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_acb0l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1737212702]

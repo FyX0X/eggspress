@@ -171,6 +171,7 @@ func is_full() -> bool:
 
 
 func try_spawn_chicken() -> bool:
+	print("Been ther")
 	if is_full(): # TODO FIXME so i can't spawn more chickens
 		return false
 	_force_spawn_chicken()
