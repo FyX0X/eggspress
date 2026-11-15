@@ -176,6 +176,7 @@ func _force_spawn_chicken() -> void:
 
 
 func drown_engine() -> void:
+	print("Drowning Engine")
 	if waterproof or engine_drowned:
 		return
 	engine_drowned = true

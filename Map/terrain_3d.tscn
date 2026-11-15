@@ -217,9 +217,8 @@ transform = Transform3D(-0.41534206, -0.27752805, -0.86629647, -0.09741429, 0.96
 [node name="Stone5" parent="." unique_id=637802616 instance=ExtResource("6_5o4x7")]
 transform = Transform3D(-0.93998295, -0.028842434, 0.34000072, -0.009540072, 0.9982536, 0.058307316, -0.3410886, 0.051564228, -0.9386161, 57.385654, 2.5421991, 315.32535)
 
-[node name="Lake" parent="." unique_id=259942328 instance=ExtResource("7_3qvyb")]
-transform = Transform3D(2.02, 0, 0, 0, 2.02, 0, 0, 0, 2.02, -26.268, -41.66909, -174.367)
-script = null
-
 [node name="Bridge" parent="." unique_id=136875083 instance=ExtResource("8_imfpi")]
 transform = Transform3D(3.3714194, 0.084438935, 14.585174, -1.81297, 14.85608, 0.3330677, -14.472308, -1.841376, 3.35599, -190.8655, -0.43675232, 192.25237)
+
+[node name="Lake" parent="." unique_id=259942328 instance=ExtResource("7_3qvyb")]
+transform = Transform3D(2.065, 0, 0, 0, 2.065, 0, 0, 0, 2.065, -26.268, -41.66909, -174.367)

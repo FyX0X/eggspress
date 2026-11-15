@@ -5,5 +5,6 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node3D) -> void:
+	print("body entered: ", body)
 	if body is Truck:
 		body.drown_engine()
