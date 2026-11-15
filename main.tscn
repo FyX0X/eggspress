@@ -89,6 +89,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -184.21684, 0, 399.37595)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.7367, 0, -204.27148)
 
 [node name="Spawn" type="Marker3D" parent="." unique_id=538182976]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.22931, 3, -195.16843)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.062263, 3, -144.6065)
 
 [node name="HUD" parent="." unique_id=1630476717 instance=ExtResource("7_272bh")]
