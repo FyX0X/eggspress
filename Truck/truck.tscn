@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b7atteshfe28" path="res://Truck/roue.tscn" id="3_y4sod"]
 [ext_resource type="Script" uid="uid://pnluveb6r53f" path="res://Truck/chicken_area.gd" id="4_clrb3"]
 [ext_resource type="AudioStream" uid="uid://cxtwr8kffm0lf" path="res://assets/audio/chicken_sound_effect/Chicken Sound Effect.ogg" id="5_rriho"]
+[ext_resource type="Script" uid="uid://cr76y86n55xpd" path="res://Truck/camera_pivot.gd" id="6_h7jiv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0ltmj"]
 size = Vector3(2.083496, 1.9310303, 2.0014343)
@@ -28,6 +29,8 @@ loop_mode = 1
 loop_end = 33738
 
 [node name="Truck" type="VehicleBody3D" unique_id=361269358]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_lakwd")
 engine_force_value = 300.0
 metadata/_edit_group_ = true
@@ -99,12 +102,6 @@ shape = SubResource("BoxShape3D_7sa57")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17756486, 2.79977)
 shape = SubResource("BoxShape3D_hmnmk")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1690573504]
-transform = Transform3D(1, 0, 0, 0, 0.7889933, 0.6144018, 0, -0.6144018, 0.7889933, 0, 3.496846, 4.76101)
-
-[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D" unique_id=575518356]
-transform = Transform3D(1, 0, 0, 0, 0.7889933, -0.6144018, 0, 0.6144018, 0.7889933, 0, 0, 0)
-
 [node name="ChickenArea" type="Area3D" parent="." unique_id=849767102 node_paths=PackedStringArray("truck", "cluck_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17756486, 1.3232042)
 collision_layer = 8
@@ -130,3 +127,14 @@ volume_db = -5.0
 
 [node name="ChickenSpawnPoint" type="Marker3D" parent="." unique_id=1221326456]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 1)
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=520138499]
+script = ExtResource("6_h7jiv")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=1519637850]
+spring_length = 12.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=1690573504]
+
+[node name="AudioListener3D" type="AudioListener3D" parent="CameraPivot/SpringArm3D/Camera3D" unique_id=575518356]
+transform = Transform3D(1, 0, 0, 0, 0.7889933, -0.6144018, 0, 0.6144018, 0.7889933, 0, 0, 0)

@@ -9,7 +9,7 @@ size = Vector3(0.58032227, 0.6057129, 1)
 
 [node name="Chicken" type="RigidBody3D" unique_id=35474579 node_paths=PackedStringArray("visual")]
 collision_layer = 8
-collision_mask = 9
+collision_mask = 11
 script = ExtResource("1_4le88")
 explosion_scene = ExtResource("2_3qp2o")
 visual = NodePath("animal-chick2")
