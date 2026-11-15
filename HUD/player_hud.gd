@@ -35,11 +35,12 @@ func _process(delta: float) -> void:
 	# Mise à jour de la vitesse
 	var speed_kmh = truck.linear_velocity.length() * 3.6
 	speed_label.text = "Speed: %d km/h" % speed_kmh
+	timer_label.text = GameManager.get_formatted_time()
 
 # --- Mises à jour permanentes ---
 
 func _on_money_changed(amount: int) -> void:
-	money_label.text = "Argent: %d $" % amount
+	money_label.text = "Money: %d $" % amount
 
 func _on_truck_chickens_changed(count: int) -> void:
 	capacity_label.text = "%d / %d Chickens in Truck" % [count, truck.capacity]
