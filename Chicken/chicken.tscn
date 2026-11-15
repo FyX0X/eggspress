@@ -7,6 +7,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4sod"]
 size = Vector3(0.58032227, 0.6057129, 1)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_3qp2o"]
+radius = 0.28520194
+
 [node name="Chicken" type="RigidBody3D" unique_id=35474579 node_paths=PackedStringArray("visual")]
 collision_layer = 8
 collision_mask = 11
@@ -21,3 +24,11 @@ shape = SubResource("BoxShape3D_y4sod")
 
 [node name="animal-chick2" parent="." unique_id=1943369241 instance=ExtResource("2_m3uvj")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1709466682]
+collision_layer = 0
+collision_mask = 11
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=650947885]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00076293945, 0.1438809, 0.0042419434)
+shape = SubResource("SphereShape3D_3qp2o")

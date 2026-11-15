@@ -23,10 +23,11 @@ var _time_left: float = 0.0
 
 var visual_scale: Vector3
 
+@onready var touching_floor : Area3D = $Area3D
+
 func _ready():
 	lock_rotation = false
 	can_sleep = false
-	pick_new_direction()
 	visual_scale = visual.scale
 	add_to_group("chickens")
 	light_fuse()
@@ -38,9 +39,10 @@ func _physics_process(delta):
 
 	_update_fuse(delta)
 
-	walk_timer -= delta
-	if walk_timer <= 0:
-		pick_new_direction()
+	if touching_floor.get_overlapping_bodies().size()>1:
+		walk_timer -= delta
+		if walk_timer <= 0:
+			pick_new_direction()
 
 	# Velocity of the truck at the chicken's position (includes turning)
 	var base := Vector3.ZERO
@@ -93,8 +95,8 @@ func explode() -> void:
 func pick_new_direction():
 	var angle = randf_range(0, TAU)
 	random_direction = Vector3(cos(angle), 0, sin(angle))
-	walk_timer = randf_range(1.0, 3.0)
-	if randf() < 0.3:
+	walk_timer = randf_range(1.0, 2.0)
+	if randf() < 0.2:
 		random_direction = Vector3.ZERO
 
 # --- Delivery ---
