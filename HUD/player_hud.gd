@@ -7,6 +7,8 @@ extends Control
 @onready var capacity_label: Label = $BottomRight/CapacityLabel
 @onready var speed_label: Label = $BottomRight/SpeedLabel
 
+@onready var engine_light: Control = $EngineLight
+
 # --- Référence UI conditionnelle (Ferme) ---
 @onready var farm_ui: VBoxContainer = $FarmHUD
 
@@ -30,6 +32,9 @@ func _ready() -> void:
 	assert(truck)
 	truck.chicken_area.chickens_changed.connect(_on_truck_chickens_changed)
 	_on_truck_chickens_changed(truck.get_chicken_count())
+	
+	truck.engine_drowned_changed.connect(_on_engine_drowned_changed)
+	_on_engine_drowned_changed(truck.engine_drowned)
 
 func _process(delta: float) -> void:
 	# Mise à jour de la vitesse
@@ -38,6 +43,9 @@ func _process(delta: float) -> void:
 	timer_label.text = GameManager.get_formatted_time()
 
 # --- Mises à jour permanentes ---
+
+func _on_engine_drowned_changed(drowned: bool) -> void:
+	engine_light.visible = drowned
 
 func _on_money_changed(amount: int) -> void:
 	money_label.text = "Money: %d $" % amount

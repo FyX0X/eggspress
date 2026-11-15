@@ -1,9 +1,14 @@
 class_name Truck
 extends VehicleBody3D
 
+
+signal engine_drowned_changed(drowned: bool)
+
 const STEER_SPEED = 1.5
 const STEER_LIMIT = 0.9
 const BRAKE_STRENGTH = 3.0
+
+
 
 @export var engine_force_value := 160.0
 @export var spawn_point: Marker3D
@@ -25,6 +30,10 @@ var _teleport_requested := false
 @onready var chicken_spawn_point: Marker3D = $ChickenSpawnPoint
 @onready var chicken_area: ChickenArea = $ChickenArea
 var capacity: int = 4
+
+
+var waterproof := false   # set to true from your upgrade code
+var engine_drowned := false
 
 
 func _ready() -> void:
@@ -77,6 +86,9 @@ func _physics_process(delta: float) -> void:
 			engine_force = -clampf(engine_force_value * 5.0 / speed, 0.0, engine_force_value * 5.0)
 		else:
 			engine_force = -engine_force_value
+	
+	if engine_drowned:
+		engine_force = 0.0
 
 	steering = move_toward(steering, _steer_target, STEER_SPEED * delta)
 	
@@ -128,6 +140,7 @@ func _wheels_on_ground() -> int:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"respawn"):
+		repair_engine()
 		_teleport_requested = true
 		for chicken in get_tree().get_nodes_in_group("chickens"):
 			chicken.queue_free()
@@ -169,3 +182,20 @@ func _force_spawn_chicken() -> void:
 	get_tree().current_scene.add_child(chicken)
 	# Spawn au-dessus du camion (même point pour load et unload)
 	chicken.global_position = chicken_spawn_point.global_position
+
+
+func drown_engine() -> void:
+	if waterproof or engine_drowned:
+		return
+	engine_drowned = true
+	engine_force = 0.0
+	engine_sound.stream_paused = true
+	engine_drowned_changed.emit(true)
+
+
+func repair_engine() -> void:
+	if not engine_drowned:
+		return
+	engine_drowned = false
+	engine_sound.stream_paused = false
+	engine_drowned_changed.emit(false)

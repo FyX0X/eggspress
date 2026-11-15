@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://4dqjk4r5hbtv"]
 
+[ext_resource type="Script" uid="uid://b1tggy4rciqtk" path="res://Map/lake.gd" id="1_rc7kn"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_hn0oc"]
 size = Vector3(120, 40, 70)
 
@@ -11,6 +13,7 @@ albedo_color = Color(0.13695619, 0.3727346, 0.7193902, 0.58431375)
 size = Vector3(120, 40, 70)
 
 [node name="Lake" type="Area3D" unique_id=259942328]
+script = ExtResource("1_rc7kn")
 metadata/_edit_group_ = true
 
 [node name="Water" type="MeshInstance3D" parent="." unique_id=680677750]

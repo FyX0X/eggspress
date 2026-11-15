@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cdh21hl5ljegd"]
 
 [ext_resource type="Script" uid="uid://w61mowmn718r" path="res://HUD/player_hud.gd" id="1_uiyku"]
+[ext_resource type="Texture2D" uid="uid://x3n32bfabsc" path="res://assets/images/orange_enginelight.png" id="2_qyjhn"]
+[ext_resource type="Script" uid="uid://ciuxb7tuiafok" path="res://HUD/engine_light.gd" id="3_qck6n"]
 
 [node name="PlayerHUD" type="Control" unique_id=191648882]
 layout_mode = 3
@@ -69,3 +71,20 @@ offset_top = -20.0
 offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
+
+[node name="EngineLight" type="TextureRect" parent="." unique_id=1436374205]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -170.0
+offset_right = 70.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qyjhn")
+expand_mode = 1
+script = ExtResource("3_qck6n")
