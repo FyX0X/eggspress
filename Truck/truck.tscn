@@ -39,7 +39,7 @@ metadata/_edit_group_ = true
 transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 0, -0.92756486, -1.2002298)
 
 [node name="BackLeft" type="VehicleWheel3D" parent="." unique_id=96382226]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, -0.9775649, 1.5997702)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.9775649, 1.5997702)
 use_as_traction = true
 wheel_roll_influence = 0.4
 wheel_friction_slip = 1.0
@@ -50,7 +50,7 @@ metadata/_edit_group_ = true
 [node name="roue" parent="BackLeft" unique_id=758120875 instance=ExtResource("3_y4sod")]
 
 [node name="BackRight" type="VehicleWheel3D" parent="." unique_id=1143081003]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1, -0.9775649, 1.5997702)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.9775649, 1.5997702)
 use_as_traction = true
 wheel_roll_influence = 0.4
 wheel_friction_slip = 1.0
@@ -61,7 +61,7 @@ metadata/_edit_group_ = true
 [node name="roue" parent="BackRight" unique_id=933352407 instance=ExtResource("3_y4sod")]
 
 [node name="FrontLeft" type="VehicleWheel3D" parent="." unique_id=1015971627]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, -0.9775649, -1.2775311)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.9775649, -1.2775311)
 use_as_steering = true
 wheel_roll_influence = 0.4
 wheel_friction_slip = 1.0
@@ -72,7 +72,7 @@ metadata/_edit_group_ = true
 [node name="roue" parent="FrontLeft" unique_id=153578737 instance=ExtResource("3_y4sod")]
 
 [node name="FrontRight" type="VehicleWheel3D" parent="." unique_id=741226358]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1, -0.9775649, -1.2775311)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.9775649, -1.2775311)
 use_as_steering = true
 wheel_roll_influence = 0.4
 wheel_friction_slip = 1.0
