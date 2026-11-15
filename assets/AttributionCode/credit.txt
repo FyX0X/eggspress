@@ -7,3 +7,9 @@ nitramnibus
 
 3D Chicken model :
 	https://kenney.nl/assets/cube-pets
+
+3D Factory model :
+	https://poly.pizza/m/fCiJW5Qdgbf
+
+3D Props models :
+	https://kenney.nl/assets/nature-kit
