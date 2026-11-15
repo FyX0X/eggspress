@@ -2,10 +2,14 @@ extends Node3D
 
 var truck_in_zone: Truck = null
 #var spawn_timer: float = 0.0
+var hud: Control
 
 func _ready() -> void:
 	self.body_entered.connect(_on_body_entered)
 	self.body_exited.connect(_on_body_exited)
+	#await get_tree().process_frame
+	hud = GameManager.player_hud
+	print(GameManager.player_hud)
 
 func _process(delta: float) -> void:
 	pass
@@ -35,9 +39,15 @@ func _on_body_entered(body: Node3D) -> void:
 		truck_in_zone = body
 		GameManager.player_hud.show_farm_ui()
 		print("[Farm] truck entered.")
+		if hud:
+			print("Hud Ok")
+			hud.show_interaction_prompt("Load Chickens") 
 
 func _on_body_exited(body: Node3D) -> void:
 	if body == truck_in_zone:
 		truck_in_zone = null
 		GameManager.player_hud.hide_farm_ui()
 		print("[Farm] truck exited.")
+		if hud:
+			print("Hud ok")
+			hud.hide_interaction_prompt()

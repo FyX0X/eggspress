@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://x3n32bfabsc" path="res://assets/images/orange_enginelight.png" id="2_qyjhn"]
 [ext_resource type="Script" uid="uid://eb2jyhfvqkif" path="res://HUD/farm_hud.gd" id="2_umdxn"]
 [ext_resource type="Script" uid="uid://ciuxb7tuiafok" path="res://HUD/engine_light.gd" id="3_qck6n"]
+[ext_resource type="Texture2D" uid="uid://c33wx7d5pnrfy" path="res://assets/images/keyboard_e.png" id="5_h0dvq"]
 
 [node name="PlayerHUD" type="Control" unique_id=191648882]
 layout_mode = 3
@@ -116,3 +117,24 @@ grow_vertical = 2
 texture = ExtResource("2_qyjhn")
 expand_mode = 1
 script = ExtResource("3_qck6n")
+
+[node name="InteractionPrompt" type="HBoxContainer" parent="." unique_id=1995737165]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = 95.0
+offset_right = 86.0
+offset_bottom = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="InteractionPrompt" unique_id=1880024894]
+layout_mode = 2
+texture = ExtResource("5_h0dvq")
+
+[node name="ActionLabel" type="Label" parent="InteractionPrompt" unique_id=1423679067]
+layout_mode = 2

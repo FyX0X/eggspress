@@ -4,6 +4,7 @@ extends Node3D
 @export var fly_duration: float = 0.9
 
 @onready var delivery_point: Marker3D = $DeliveryPoint
+var hud: Control
 
 var truck_in_zone: Truck = null
 var is_unloading: bool = false
@@ -13,6 +14,7 @@ func _ready() -> void:
 	assert(delivery_point)
 	self.body_entered.connect(_on_body_entered)
 	self.body_exited.connect(_on_body_exited)
+	hud = GameManager.player_hud
 
 func _process(delta: float) -> void:
 	if not is_unloading or truck_in_zone == null:
@@ -47,8 +49,12 @@ func _launch(chicken: Chicken) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body is Truck:
 		truck_in_zone = body
+		if hud:
+			hud.show_interaction_prompt("Unload Chickens")
 
 func _on_body_exited(body: Node3D) -> void:
 	if body == truck_in_zone:
 		is_unloading = false
 		truck_in_zone = null
+		if hud:
+			hud.hide_interaction_prompt() # Cache l'invite quand on part

@@ -15,4 +15,4 @@ nitramnibus
 	https://kenney.nl/assets/nature-kit
 
 Impact sound effect:
-	https://kenney.nl/assets/impact-sounds
+	https://kenney.nl/assets/impact-soundsas

@@ -46,10 +46,11 @@ var _pre_collision_speed: float = 0.0
 
 @onready var impact_sound: AudioStreamPlayer3D = $ImpactSound
 
+func _init() -> void:
+	GameManager.truck = self
 
 func _ready() -> void:
 	can_sleep = false
-	GameManager.truck = self
 	
 	assert(spawn_point)
 	assert(is_instance_valid(chicken_spawn_point))

@@ -13,13 +13,18 @@ extends Control
 # --- Référence UI conditionnelle (Ferme) ---
 @onready var farm_ui: VBoxContainer = $FarmHUD
 
+@onready var interaction_prompt: HBoxContainer = $InteractionPrompt
+@onready var action_label: Label = $InteractionPrompt/ActionLabel
 var truck: Truck
 
-func _ready() -> void:
+func _init() -> void:
 	GameManager.player_hud = self
+
+func _ready() -> void:
 	
 	# Cache FarmUI au départ
 	hide_farm_ui()
+	hide_interaction_prompt()
 	
 	# Écoute l'argent
 	GameManager.money_changed.connect(_on_money_changed)
@@ -65,3 +70,10 @@ func show_farm_ui() -> void:
 
 func hide_farm_ui() -> void:
 	farm_ui.visible = false
+
+func show_interaction_prompt(action_text: String) -> void:
+	action_label.text = action_text
+	interaction_prompt.visible = true
+
+func hide_interaction_prompt() -> void:
+	interaction_prompt.visible = false
