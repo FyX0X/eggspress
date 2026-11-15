@@ -31,7 +31,7 @@ chicken_scene = ExtResource("2_0xm2m")
 environment = SubResource("Environment_hn0oc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1893577449]
-transform = Transform3D(1, 0, 0, 0, 0.5698023, 0.8217819, 0, -0.8217819, 0.5698023, 0, 161, 400.66504)
+transform = Transform3D(1, 0, 0, 0, 0.108109325, 0.99413896, 0, -0.99413896, 0.108109325, 0, 161, 231.90924)
 
 [node name="Chickens" type="Node3D" parent="." unique_id=1591232188]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -159.90279, 0.99725914, 410.83658)
@@ -91,7 +91,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -184.21684, 0, 399.37595)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.7367, 0, -204.27148)
 
 [node name="Spawn" type="Marker3D" parent="." unique_id=538182976]
-transform = Transform3D(0.03212924, 0.0058704917, -0.9994665, -0.00018861769, 0.9999828, 0.0058674607, 0.9994837, 0, 0.032129794, -162.8682, 8.312489, 406.5178)
+transform = Transform3D(0.03212924, 0.0058704917, -0.9994665, -0.00018861769, 0.9999828, 0.0058674607, 0.9994837, 0, 0.032129794, 1.7435608, 4.4186287, -87.994896)
 
 [node name="HUD" parent="." unique_id=1630476717 instance=ExtResource("7_272bh")]
 
