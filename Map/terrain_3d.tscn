@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://rsgs14hwe1kd" path="res://Props/stone_1.tscn" id="4_hwq3e"]
 [ext_resource type="PackedScene" uid="uid://d2ii346eobfwg" path="res://Props/log_stack.tscn" id="5_8u8lc"]
 [ext_resource type="PackedScene" uid="uid://0c1718de8i1g" path="res://Props/stone_2.tscn" id="6_5o4x7"]
+[ext_resource type="PackedScene" uid="uid://4dqjk4r5hbtv" path="res://Map/lake.tscn" id="7_3qvyb"]
 
 [sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_1if3g"]
 _shader_parameters = {
@@ -63,15 +64,6 @@ normal_texture = SubResource("ImageTexture_1if3g")
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_1if3g"]
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_cq7bw")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_hwq3e")])
-
-[sub_resource type="BoxMesh" id="BoxMesh_hn0oc"]
-size = Vector3(113.210785, 42.064026, 62.688293)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hn0oc"]
-transparency = 1
-albedo_color = Color(0.13695619, 0.3727346, 0.7193902, 0.58431375)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hn0oc"]
 
 [node name="Terrain3D" type="Terrain3D" unique_id=607388255]
 data_directory = "res://Map/terrain_data"
@@ -168,13 +160,5 @@ transform = Transform3D(-0.42657083, -0.064905725, -0.9021224, -0.0059906393, 0.
 [node name="Stone4" parent="." unique_id=1953646931 instance=ExtResource("6_5o4x7")]
 transform = Transform3D(-0.41534206, -0.27752805, -0.86629647, -0.09741429, 0.960418, -0.260976, 0.90443456, -0.024004627, -0.42593685, 2.7142677, 7.8114576, 402.27817)
 
-[node name="Lake" type="Area3D" parent="." unique_id=1043552860]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.721813, -23.2, -199.847)
-metadata/_edit_group_ = true
-
-[node name="Water" type="MeshInstance3D" parent="Lake" unique_id=210179466]
-mesh = SubResource("BoxMesh_hn0oc")
-surface_material_override/0 = SubResource("StandardMaterial3D_hn0oc")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Lake" unique_id=2043077713]
-shape = SubResource("BoxShape3D_hn0oc")
+[node name="Lake" parent="." unique_id=259942328 instance=ExtResource("7_3qvyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.721813, -21.82483, -199.847)

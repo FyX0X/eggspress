@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://4dqjk4r5hbtv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hn0oc"]
+size = Vector3(120, 40, 70)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hn0oc"]
+transparency = 1
+albedo_color = Color(0.13695619, 0.3727346, 0.7193902, 0.58431375)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hn0oc"]
+size = Vector3(120, 40, 70)
+
+[node name="Lake" type="Area3D" unique_id=259942328]
+metadata/_edit_group_ = true
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=680677750]
+mesh = SubResource("BoxMesh_hn0oc")
+surface_material_override/0 = SubResource("StandardMaterial3D_hn0oc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=276216984]
+shape = SubResource("BoxShape3D_hn0oc")
