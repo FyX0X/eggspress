@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://dj4yxih214cry"]
-
-[ext_resource type="Script" uid="uid://dpv1efteup6vr" path="res://Wallet/wallet.gd" id="1_l8w1b"]
-
-[node name="Wallet" type="Node" unique_id=1518770626]
-script = ExtResource("1_l8w1b")

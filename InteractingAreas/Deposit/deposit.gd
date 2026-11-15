@@ -10,6 +10,7 @@ var is_unloading: bool = false
 var unload_timer: float = 0.0
 
 func _ready() -> void:
+	assert(delivery_point)
 	self.body_entered.connect(_on_body_entered)
 	self.body_exited.connect(_on_body_exited)
 
@@ -31,7 +32,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			unload_timer = 0.0
 
 func unload_chicken() -> bool:
-	var chicken : Chicken = truck_in_zone.take_chicken()
+	var chicken : Chicken = truck_in_zone.get_top_chicken()
 	if chicken == null:
 		return false
 	# La poule décolle depuis le spawn point du camion
@@ -40,7 +41,8 @@ func unload_chicken() -> bool:
 
 func _launch(chicken: Chicken) -> void:
 	await chicken.fly_to(delivery_point.global_position, fly_duration)
-	Wallet.change_money(price_per_chicken)
+	GameManager.deliver_chickens(1)
+	
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Truck:

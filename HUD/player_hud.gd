@@ -3,7 +3,7 @@ extends Control
 # --- Références UI permanente ---
 @onready var money_label: Label = $MoneyLabel
 @onready var timer_label: Label = $TimerLabel
-@onready var delivery_lab: Label = $DeliveryLabel
+@onready var delivery_label: Label = $DeliveryLabel
 @onready var capacity_label: Label = $BottomRight/CapacityLabel
 @onready var speed_label: Label = $BottomRight/SpeedLabel
 
@@ -13,9 +13,7 @@ extends Control
 # --- Référence à la scène des cartes ---
 @export var upgrade_card_scene: PackedScene
 
-var current_truck: Truck = null
-var total_delivered: int = 0
-var total_target: int = 100
+@export var truck: Truck
 var cards_generated: bool = false
 
 func _ready() -> void:
@@ -23,37 +21,31 @@ func _ready() -> void:
 	farm_ui.visible = false
 	
 	# Écoute l'argent
-	Wallet.money_changed.connect(_on_money_changed)
-	_on_money_changed(Wallet.money)
+	GameManager.money_changed.connect(_on_money_changed)
+	_on_money_changed(GameManager.money)
+	GameManager.chicken_delivered_changed.connect(_on_delivery_changed)
+	_on_delivery_changed(GameManager.chicken_delivered)
 	
-	_update_delivery_label()
+	truck = GameManager.truck
+	assert(truck)
+	truck.chicken_area.chickens_changed.connect(_on_truck_chickens_changed)
+	_on_truck_chickens_changed(truck.get_chicken_count())
 
 func _process(delta: float) -> void:
 	# Mise à jour de la vitesse
-	if current_truck:
-		var speed_kmh = current_truck.linear_velocity.length() * 3.6
-		speed_label.text = "Vitesse: %d km/h" % speed_kmh
+	var speed_kmh = truck.linear_velocity.length() * 3.6
+	speed_label.text = "Speed: %d km/h" % speed_kmh
 
 # --- Mises à jour permanentes ---
 
 func _on_money_changed(amount: int) -> void:
 	money_label.text = "Argent: %d $" % amount
 
-func bind_truck(truck: Truck) -> void:
-	current_truck = truck
-	truck.chickens_changed.connect(_on_truck_chickens_changed)
-	_on_truck_chickens_changed(truck.get_chicken_count())
-
 func _on_truck_chickens_changed(count: int) -> void:
-	if current_truck:
-		capacity_label.text = "%d / %d" % [count, current_truck.capacity]
+	capacity_label.text = "%d / %d Chickens in Truck" % [count, truck.capacity]
 
-func add_delivered_chickens(amount: int) -> void:
-	total_delivered += amount
-	_update_delivery_label()
-
-func _update_delivery_label() -> void:
-	delivery_lab.text = "%d / %d" % [total_delivered, total_target]
+func _on_delivery_changed(amount: int) -> void:
+	delivery_label.text = "%d / %d Chickens Delivered" % [amount, GameManager.chicken_delivery_total]
 
 # --- Gestion des Upgrade Cards (génération auto) ---
 

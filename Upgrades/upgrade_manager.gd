@@ -68,7 +68,7 @@ func get_current_price(upgrade_name: String) -> int:
 
 func buy_upgrade(upgrade_name: String) -> bool:
 	var price = get_current_price(upgrade_name)
-	if Wallet.remove_money(price):
+	if GameManager.remove_money(price):
 		upgrades_catalog[upgrade_name]["level"] += 1
 		upgrade_purchased.emit(upgrade_name, upgrades_catalog[upgrade_name]["level"])
 		return true

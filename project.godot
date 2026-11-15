@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Wallet="*uid://dpv1efteup6vr"
+GameManager="*uid://dpv1efteup6vr"
 UpgradeManager="*uid://b0ynvjj1hfb8i"
 
 [display]

@@ -1,6 +1,8 @@
 class_name ChickenArea
 extends Area3D
 
+signal chickens_changed(new_amount: int)
+
 @export var truck: VehicleBody3D
 @export var cluck_player: AudioStreamPlayer3D
 @export var cluck_sounds: Array[AudioStream]
@@ -21,6 +23,7 @@ func _on_body_entered(body: Node3D) -> void:
 		body.carrier = truck
 		body.cancel_fuse()
 		chickens.append(body)
+		chickens_changed.emit(chickens.size())
 		print("[ChickenArea] Added Chicken")
 
 func _on_body_exited(body: Node3D) -> void:
@@ -28,6 +31,7 @@ func _on_body_exited(body: Node3D) -> void:
 		body.carrier = null
 		body.light_fuse()
 		chickens.erase(body)
+		chickens_changed.emit(chickens.size())
 		print("[ChickenArea] Removed Chicken")
 
 func _process(delta: float) -> void:

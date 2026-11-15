@@ -24,11 +24,13 @@ var _teleport_requested := false
 @onready var desired_engine_pitch: float = engine_sound.pitch_scale
 @onready var chicken_spawn_point: Marker3D = $ChickenSpawnPoint
 @onready var chicken_area: ChickenArea = $ChickenArea
-var chicken_limit: int = 4
+var capacity: int = 4
 
 
 func _ready() -> void:
+	GameManager.truck = self
 	previous_speed = linear_velocity.length()
+	
 	assert(spawn_point)
 	assert(is_instance_valid(chicken_spawn_point))
 	
@@ -141,9 +143,18 @@ func _input(p_input_event: InputEvent) -> void:
 	#if p_input_event.is_action_pressed(&"honk"):
 		#$HonkSound.play() TODO
 
+func get_top_chicken() -> Chicken:
+	var top: Chicken = null
+	for chicken: Chicken in chicken_area.chickens:
+		if not top || top.global_position.y < chicken.global_position.y:
+			top = chicken
+	return top
+
+func get_chicken_count() -> int:
+	return chicken_area.chickens.size()
 
 func is_full() -> bool:
-	return chicken_area.chickens.size() >= chicken_limit
+	return get_chicken_count() >= capacity
 
 
 func try_spawn_chicken() -> bool:
