@@ -13,7 +13,6 @@ config_version=5
 config/name="Eggspress"
 run/main_scene="uid://cj6xkgwnh1auu"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [audio]
 
