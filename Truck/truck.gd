@@ -37,6 +37,7 @@ var engine_drowned := false
 
 
 func _ready() -> void:
+	can_sleep = false
 	GameManager.truck = self
 	previous_speed = linear_velocity.length()
 	
