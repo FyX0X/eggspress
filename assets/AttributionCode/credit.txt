@@ -13,3 +13,6 @@ nitramnibus
 
 3D Props models :
 	https://kenney.nl/assets/nature-kit
+
+Impact sound effect:
+	https://kenney.nl/assets/impact-sounds
