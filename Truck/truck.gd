@@ -34,6 +34,18 @@ var capacity: int = 4
 var waterproof := false   # set to true from your upgrade code
 var engine_drowned := false
 
+@export_group("Impact Sound")
+@export var impact_min_speed: float = 3.0        # m/s below which we ignore (prevents ticking on small bumps)
+@export var impact_max_speed: float = 25.0       # m/s at which sound hits full volume
+@export var impact_min_volume_db: float = -20.0
+@export var impact_max_volume_db: float = 0.0
+@export var impact_cooldown: float = 0.15        # seconds between sounds (avoid machine-gun)
+
+var _last_impact_time: float = -100.0
+var _pre_collision_speed: float = 0.0
+
+@onready var impact_sound: AudioStreamPlayer3D = $ImpactSound
+
 
 func _ready() -> void:
 	can_sleep = false
@@ -43,6 +55,10 @@ func _ready() -> void:
 	assert(is_instance_valid(chicken_spawn_point))
 	
 	_teleport_requested = true
+	
+	contact_monitor = true
+	max_contacts_reported = 4
+	body_entered.connect(_on_body_entered)
 
 
 func _physics_process(delta: float) -> void:
@@ -105,6 +121,8 @@ func _handle_brakes() -> void:
 		brake = 0.0
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	_pre_collision_speed = state.linear_velocity.length()
+	
 	if not _teleport_requested:
 		return
 	_teleport_requested = false
@@ -180,3 +198,25 @@ func repair_engine() -> void:
 func _give_distance_reward() -> void:
 	var distance: float = (global_position - spawn_point.global_position).length()
 	GameManager._change_money(distance * get_chicken_count() * distance_reward)
+
+
+func _on_body_entered(_body: Node) -> void:
+	# Godot gives us the *current* velocity here, not pre-impact velocity,
+	# because the solver already resolved the collision. For a decent approximation
+	# we use the velocity magnitude we had going into the frame, cached below.
+	var speed := _pre_collision_speed
+	if speed < impact_min_speed:
+		return
+
+	var now := Time.get_ticks_msec() / 1000.0
+	if now - _last_impact_time < impact_cooldown:
+		return
+	_last_impact_time = now
+
+	var t := clampf(
+		(speed - impact_min_speed) / (impact_max_speed - impact_min_speed),
+		0.0, 1.0
+	)
+	impact_sound.volume_db = lerpf(impact_min_volume_db, impact_max_volume_db, t)
+	impact_sound.pitch_scale = randf_range(0.9, 1.1)  # subtle variation
+	impact_sound.play()
