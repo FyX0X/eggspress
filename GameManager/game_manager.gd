@@ -5,18 +5,18 @@ signal chicken_delivered_changed(new_amount: int)
 signal win
 signal upgrade_purchased(upgrade: Upgrade)
 
-var money : int = 0
-var chicken_value : int = 10
-var chicken_delivered: int = 0
+var money : int
+var chicken_value : int
+var chicken_delivered: int
 var chicken_delivery_total: int = 75
 var truck: Truck = null
 var player_hud: PlayerHUD = null
 var bridge: Bridge = null
 
-var time_elapsed: float = 0.0
-var is_timer_running: bool = true
+var time_elapsed: float
+var is_timer_running: bool
 
-var unloading_speed: float = 1.0
+var unloading_speed: float
 
 
 # UPGRADES
@@ -42,6 +42,7 @@ class Upgrade:
 var upgrades: Array[Upgrade] = []
 
 func _ready() -> void:
+	_reset_game()
 	upgrades = [
 		Upgrade.new("bridge", "Unlock Bridge", "Adds a bridge over the canion",
 			200, 1, func(): bridge.set_active(true)),
@@ -56,6 +57,9 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_add_money"):
 		_change_money(10000)
+	if event.is_action_pressed("ui_cancel"):
+		_reset_game()
+		get_tree().change_scene_to_file("res://Menu/main_menu.tscn")
 
 func _process(delta: float) -> void:
 	if is_timer_running:
@@ -120,3 +124,12 @@ func get_upgrade(id: String) -> Upgrade:
 		if u.id == id:
 			return u
 	return null
+
+func _reset_game():
+	money = 0
+	chicken_delivered = 0
+	chicken_value = 10
+	time_elapsed = 0.0
+	is_timer_running = true
+	unloading_speed = 1.0
+	pass

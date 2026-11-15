@@ -11,13 +11,18 @@ config_version=5
 [application]
 
 config/name="Eggspress"
-run/main_scene="uid://bbmalpekgrf04"
+run/main_scene="uid://cj6xkgwnh1auu"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://caosumv4eb0kf"
 
 [autoload]
 
 GameManager="*uid://dpv1efteup6vr"
+SettingsManager="*uid://cqs7j88n8pmou"
 
 [display]
 

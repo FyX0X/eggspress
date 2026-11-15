@@ -121,9 +121,11 @@ stream = SubResource("AudioStreamWAV_y4sod")
 volume_db = -5.0
 pitch_scale = 0.05
 autoplay = true
+bus = &"SFX"
 
 [node name="CluckPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1703625552]
 volume_db = -5.0
+bus = &"SFX"
 
 [node name="ChickenSpawnPoint" type="Marker3D" parent="." unique_id=1221326456]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 1)

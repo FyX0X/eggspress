@@ -18,6 +18,7 @@ material = SubResource("StandardMaterial3D_hqg6r")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=901432300]
 stream = ExtResource("1_3g5mp")
 autoplay = true
+bus = &"SFX"
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1109279236]
 emitting = false
