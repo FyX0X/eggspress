@@ -1,0 +1,9 @@
+# Authors
+
+Hakibara
+andy
+nitramnibus
+
+
+3D Chicken model :
+	https://kenney.nl/assets/cube-pets
