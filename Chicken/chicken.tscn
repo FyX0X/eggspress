@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dxuo37ni02rxa" path="res://assets/models/kenney_cube-pets_1.0/Models/GLB format/animal-chick.glb" id="2_m3uvj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oeucq"]
-bounce = 0.6
+bounce = 0.4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4sod"]
 size = Vector3(0.58032227, 0.6057129, 1)
