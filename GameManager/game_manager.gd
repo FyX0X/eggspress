@@ -11,6 +11,7 @@ var chicken_delivered: int = 0
 var chicken_delivery_total: int = 75
 var truck: Truck = null
 var player_hud: PlayerHUD = null
+var bridge: Bridge = null
 
 var time_elapsed: float = 0.0
 var is_timer_running: bool = true
@@ -43,7 +44,7 @@ var upgrades: Array[Upgrade] = []
 func _ready() -> void:
 	upgrades = [
 		Upgrade.new("bridge", "Unlock Bridge", "Adds a bridge over the canion",
-			200, 1, func(): print("todo unlock bridge")),
+			200, 1, func(): bridge.set_active(true)),
 		Upgrade.new("bigger_load", "Bigger Load", "+1 chicken per trip",
 			20, 5, func(): truck.capacity *= 2; truck.chicken_area.chickens_changed.emit(truck.get_chicken_count())),
 		Upgrade.new("better_value", "Premium Chicken", "+5 per chicken",

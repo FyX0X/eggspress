@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bokmsb0y4nj8h"]
+
+[ext_resource type="Script" uid="uid://fgumeqkow7yj" path="res://Map/bridge.gd" id="1_gq8rx"]
+[ext_resource type="PackedScene" uid="uid://bvpbgdro35xwx" path="res://assets/models/kenney_nature-kit/Models/GLTF format/bridge_center_woodRound.glb" id="1_ibh18"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ckjy"]
+size = Vector3(2, 0.05120703, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ibh18"]
+size = Vector3(2, 0.2012627, 0.099731445)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gq8rx"]
+size = Vector3(2, 0.20236133, 0.099609375)
+
+[node name="Bridge" type="StaticBody3D" unique_id=136875083]
+script = ExtResource("1_gq8rx")
+
+[node name="bridge_center_woodRound2" parent="." unique_id=1891085195 instance=ExtResource("1_ibh18")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Road" type="CollisionShape3D" parent="." unique_id=2138063377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12347485, 0)
+shape = SubResource("BoxShape3D_2ckjy")
+
+[node name="WallRight" type="CollisionShape3D" parent="." unique_id=1040528491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19850269, 0.45013428)
+shape = SubResource("BoxShape3D_ibh18")
+
+[node name="WallLeft" type="CollisionShape3D" parent="." unique_id=1115558884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.199052, -0.4501953)
+shape = SubResource("BoxShape3D_gq8rx")
