@@ -46,7 +46,7 @@ func _ready() -> void:
 	upgrades = [
 		Upgrade.new("bridge", "Unlock Bridge", "Adds a bridge over the canion",
 			100, 1, func(): bridge.set_active(true)),
-		Upgrade.new("bigger_load", "Bigger Load", "+1 chicken per trip",
+		Upgrade.new("bigger_load", "Bigger Load", "x2 chicken per trip",
 			20, 5, func(): truck.capacity *= 2; truck.chicken_area.chickens_changed.emit(truck.get_chicken_count())),
 		Upgrade.new("better_value", "Premium Chicken", "+5 per chicken",
 			20, 10, func(): chicken_value += 5),
