@@ -19,9 +19,8 @@ ambient_light_energy = 0.3
 script = ExtResource("1_7mycd")
 
 [node name="Truck" parent="." unique_id=361269358 node_paths=PackedStringArray("spawn_point") instance=ExtResource("1_ig7tw")]
-transform = Transform3D(0.2518037, 0.025939213, -0.96743065, -0.05561234, 0.99837685, 0.01229413, 0.96617925, 0.050705377, 0.25283754, -159.13245, 1.7683482, 410.8501)
-mass = 80.0
-engine_force_value = 160.0
+transform = Transform3D(0.25180367, 0.025939211, -0.96743065, -0.055612326, 0.9983767, 0.0122941295, 0.9661792, 0.05070536, 0.25283748, -159.13245, 1.7683482, 410.8501)
+mass = 100.0
 spawn_point = NodePath("../Spawn")
 chicken_scene = ExtResource("2_0xm2m")
 

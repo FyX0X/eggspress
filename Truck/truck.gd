@@ -4,26 +4,24 @@ extends VehicleBody3D
 
 signal engine_drowned_changed(drowned: bool)
 
-const STEER_SPEED = 1.5
-const STEER_LIMIT = 0.9
-const BRAKE_STRENGTH = 3.0
 
+# --- Tuning ---
+@export_group("Tuning")
+@export var max_engine_force: float = 150.0
+@export var max_brake_force: float = 25.0
+@export var max_steer_angle: float = 0.5      # radians (~28°)
+@export var steer_speed: float = 3.0          # how fast steering responds
+@export var steer_return_speed: float = 5.0   # how fast it returns to center
+@export var reverse_force_multiplier: float = 0.5
 
+# --- State ---
+var current_steer: float = 0.0
 
-@export var engine_force_value := 160.0
+@export_group("Misc")
 @export var spawn_point: Marker3D
 @export var chicken_scene: PackedScene
 @export var distance_reward: float = 0.01
 
-@export_group("Rotation Control")
-@export var enabled: bool = false
-@export var pitch_torque := 6.0
-@export var side_torque := 6.0
-@export var side_is_roll := true        # true: A/D roll the truck, false: A/D yaw it
-@export var only_when_airborne := true  # avoids fighting the wheels/steering on the ground
-
-var previous_speed := 0.0
-var _steer_target := 0.0
 var _teleport_requested := false
 
 @onready var engine_sound: AudioStreamPlayer3D = $EngineSound
@@ -40,63 +38,71 @@ var engine_drowned := false
 func _ready() -> void:
 	can_sleep = false
 	GameManager.truck = self
-	previous_speed = linear_velocity.length()
 	
 	assert(spawn_point)
 	assert(is_instance_valid(chicken_spawn_point))
 	
 	_teleport_requested = true
-	#assert(turbometer)
-	#assert(turbo_animator)
 
 
 func _physics_process(delta: float) -> void:
-	_steer_target = Input.get_axis(&"right", &"left")
-	_steer_target *= STEER_LIMIT
+	_handle_steering(delta)
+	_handle_throttle()
+	_handle_brakes()
+	
 
-	# Engine sound simulation (not realistic, as this car script has no notion of gear or engine RPM).
-	desired_engine_pitch = 0.05 + linear_velocity.length() / (engine_force_value * 0.5)
-	# Change pitch smoothly to avoid abrupt change on collision.
-	engine_sound.pitch_scale = lerpf(engine_sound.pitch_scale, desired_engine_pitch, 0.2)
+	var speed := linear_velocity.length()
+	var normalized := clampf(speed / 40.0, 0.0, 1.0)
+	desired_engine_pitch = lerpf(0.8, 1.6, normalized)
 
-	if absf(linear_velocity.length() - previous_speed) > 1.0:
-		# Sudden velocity change, likely due to a collision. Play an impact sound to give audible feedback,
-		# and vibrate for haptic feedback.
-		
-		# $ImpactSound.play() TODO
-		Input.vibrate_handheld(100)
-		for joypad in Input.get_connected_joypads():
-			Input.start_joy_vibration(joypad, 0.0, 0.5, 0.1)
+	# $ImpactSound.play() TODO
+	# previous_speed = linear_velocity.length()
 
 
 
-	# Automatically accelerate when using touch controls (reversing overrides acceleration).
-	if DisplayServer.is_touchscreen_available() or Input.is_action_pressed(&"forward"):
-		# Increase engine force at low speeds to make the initial acceleration faster.
-		var speed := linear_velocity.length()
-		if speed < 5.0 and not is_zero_approx(speed):
-			engine_force = -clampf(engine_force_value * 5.0 / speed, 0.0, engine_force_value * 5.0)
-		else:
-			engine_force = -engine_force_value
+
+func _handle_steering(delta: float) -> void:
+	var steer_input := Input.get_axis("right", "left")  # -1..1
+
+	if abs(steer_input) > 0.01:
+		# Turn toward input smoothly
+		current_steer = move_toward(
+			current_steer,
+			steer_input * max_steer_angle,
+			steer_speed * delta
+		)
+	else:
+		# Return to center smoothly
+		current_steer = move_toward(current_steer, 0.0, steer_return_speed * delta)
+
+	steering = current_steer
+
+
+func _handle_throttle() -> void:
+	if engine_drowned:
+		engine_force = 0.0
+		return
+	var throttle := Input.get_action_strength("forward")    # forward
+	var reverse := Input.get_action_strength("backward")   # backward
+	
+	# TEMP SWAP TO FIX ORIENTATION
+	var tmp = throttle
+	throttle = reverse
+	reverse = tmp
+
+	if throttle > 0.0:
+		engine_force = throttle * max_engine_force
+	elif reverse > 0.0:
+		engine_force = -reverse * max_engine_force * reverse_force_multiplier
 	else:
 		engine_force = 0.0
 
-	if Input.is_action_pressed(&"backward"):
-		# Increase engine force at low speeds to make the initial reversing faster.
-		var speed := linear_velocity.length()
-		if speed < 5.0 and not is_zero_approx(speed):
-			engine_force = clampf(engine_force_value * 5.0 / speed, 0.0, engine_force_value * 5.0)
-		else:
-			engine_force = engine_force_value
-	
-	if engine_drowned:
-		engine_force = 0.0
 
-	steering = move_toward(steering, _steer_target, STEER_SPEED * delta)
-	
-	_apply_rotation_control()
-
-	previous_speed = linear_velocity.length()
+func _handle_brakes() -> void:
+	if Input.is_action_pressed("jump"):  # Space = handbrake
+		brake = max_brake_force
+	else:
+		brake = 0.0
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if not _teleport_requested:
@@ -110,35 +116,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	state.linear_velocity = Vector3.ZERO
 	state.angular_velocity = Vector3.ZERO
 	steering = 0.0
-	previous_speed = 0.0
+	#previous_speed = 0.0
 
-func _apply_rotation_control() -> void:
-	if not enabled:
-		return
-	
-	if only_when_airborne and _wheels_on_ground() > 0:
-		return
-
-	# Same sign convention as your steering: left = positive
-	var pitch_input := Input.get_axis(&"forward", &"backward")  # S = nose up, W = nose down
-	var side_input := Input.get_axis(&"right", &"left")         # A = left, D = right
-
-	var local_torque := Vector3(pitch_input * pitch_torque, 0.0, 0.0)
-	if side_is_roll:
-		local_torque.z = side_input * side_torque   # A = roll left
-	else:
-		local_torque.y = side_input * side_torque   # A = yaw left
-
-	# Convert to world space and scale by mass so tuning doesn't depend on truck weight
-	apply_torque(global_transform.basis * local_torque * mass)
-
-
-func _wheels_on_ground() -> int:
-	var count := 0
-	for child in get_children():
-		if child is VehicleWheel3D and child.is_in_contact():
-			count += 1
-	return count
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"respawn"):
@@ -152,12 +131,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		print("[DEBUG] Spawning Chicken")
 		_force_spawn_chicken()
 
-
-func _input(p_input_event: InputEvent) -> void:
-	pass
-
-	#if p_input_event.is_action_pressed(&"honk"):
-		#$HonkSound.play() TODO
 
 func get_top_chicken() -> Chicken:
 	var top: Chicken = null

@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://cmt46poexlrid" path="res://Chicken/explosion.tscn" id="2_3qp2o"]
 [ext_resource type="PackedScene" uid="uid://dxuo37ni02rxa" path="res://assets/models/kenney_cube-pets_1.0/Models/GLB format/animal-chick.glb" id="2_m3uvj"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oeucq"]
+bounce = 0.6
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4sod"]
 size = Vector3(0.58032227, 0.6057129, 1)
 
@@ -13,6 +16,7 @@ radius = 0.28520194
 [node name="Chicken" type="RigidBody3D" unique_id=35474579 node_paths=PackedStringArray("visual")]
 collision_layer = 8
 collision_mask = 11
+physics_material_override = SubResource("PhysicsMaterial_oeucq")
 script = ExtResource("1_4le88")
 explosion_scene = ExtResource("2_3qp2o")
 visual = NodePath("animal-chick2")
