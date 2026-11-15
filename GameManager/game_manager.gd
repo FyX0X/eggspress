@@ -6,6 +6,7 @@ signal win
 signal upgrade_purchased(upgrade: Upgrade)
 
 var money : int
+var total_money : int
 var chicken_value : int
 var chicken_delivered: int
 var chicken_delivery_total: int = 25
@@ -69,7 +70,12 @@ func get_formatted_time() -> String:
 	var total_seconds: int = int(time_elapsed)
 	var minutes: int = total_seconds / 60
 	var seconds: int = total_seconds % 60
-	return "%02d:%02d" % [minutes, seconds]
+	
+	# On isole la partie décimale et on la multiplie par 100 (pour 2 chiffres) ou 1000 (pour 3)
+	var milliseconds: int = int((time_elapsed - total_seconds) * 1000)
+	
+	# Format MM:SS.ms (ex: 01:23.45)
+	return "%02d:%02d.%02d" % [minutes, seconds, milliseconds]
 
 func set_timer_running(running: bool) -> void:
 	is_timer_running = running
@@ -78,6 +84,8 @@ func reset_timer() -> void:
 	time_elapsed = 0.0
 
 func _change_money(amount : int) -> void:
+	if amount > 0 :
+		total_money += amount
 	money += amount
 	money_changed.emit(money)
 
@@ -86,6 +94,7 @@ func _change_delivered(amount: int) -> void:
 	chicken_delivered_changed.emit(chicken_delivered)
 	if chicken_delivered > chicken_delivery_total:
 		win.emit()
+		get_tree().change_scene_to_file("res://Menu/end_screen.tscn")
 
 func is_buyable(price : int) -> bool:
 	return money >= price
@@ -127,6 +136,7 @@ func get_upgrade(id: String) -> Upgrade:
 
 func _reset_game():
 	money = 0
+	total_money = 0
 	chicken_delivered = 0
 	chicken_value = 10
 	time_elapsed = 0.0
