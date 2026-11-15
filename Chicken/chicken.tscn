@@ -29,6 +29,15 @@ shape = SubResource("BoxShape3D_y4sod")
 [node name="animal-chick2" parent="." unique_id=1943369241 instance=ExtResource("2_m3uvj")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
+[node name="body" parent="animal-chick2/animal-chick/root" parent_id_path=PackedInt32Array(1943369241, 1820630866) index="2" unique_id=2134529544]
+transform = Transform3D(0.9824088, 0.17322516, 0.069756456, -0.17364816, 0.9848077, -4.656613e-10, -0.0686967, -0.01211308, 0.9975641, 1.573182e-08, 0.18124998, -3.8083503e-08)
+
+[node name="wing-left" parent="animal-chick2/animal-chick/root/body" index="0" unique_id=765300470]
+transform = Transform3D(0.7660445, 0.6427876, 0, -0.6427876, 0.7660445, 0, 0, 0, 1, 0.625, 0.4625, 0.031078815)
+
+[node name="wing-right" parent="animal-chick2/animal-chick/root/body" index="1" unique_id=2134378835]
+transform = Transform3D(0.7660445, -0.6427876, 0, 0.6427876, 0.7660445, 0, 0, 0, 1, -0.5250001, 0.4625, 0.031078815)
+
 [node name="Area3D" type="Area3D" parent="." unique_id=1709466682]
 collision_layer = 0
 collision_mask = 11
@@ -36,3 +45,5 @@ collision_mask = 11
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=650947885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00076293945, 0.1438809, 0.0042419434)
 shape = SubResource("SphereShape3D_3qp2o")
+
+[editable path="animal-chick2"]

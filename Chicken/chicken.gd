@@ -24,13 +24,16 @@ var _time_left: float = 0.0
 var visual_scale: Vector3
 
 @onready var touching_floor : Area3D = $Area3D
-
+@onready var anim_player: AnimationPlayer = $"animal-chick2/AnimationPlayer"
 func _ready():
 	lock_rotation = false
 	can_sleep = false
 	visual_scale = visual.scale
 	add_to_group("chickens")
 	light_fuse()
+	
+	if anim_player and anim_player.has_animation("idle"):
+		anim_player.play("idle")
 
 func _physics_process(delta):
 	
@@ -43,7 +46,18 @@ func _physics_process(delta):
 		walk_timer -= delta
 		if walk_timer <= 0:
 			pick_new_direction()
-
+			
+	var is_moving = (random_direction != Vector3.ZERO)
+	
+	if anim_player:
+		if is_moving:
+			# On lance "walk" seulement si elle ne la joue pas déjà (évite les saccades)
+			if anim_player.current_animation != "walk":
+				anim_player.play("walk")
+		else:
+			# Elle s'arrête pour picorer
+			if anim_player.current_animation != "idle":
+				anim_player.play("idle")
 	# Velocity of the truck at the chicken's position (includes turning)
 	var base := Vector3.ZERO
 	if carrier:
@@ -107,6 +121,11 @@ func fly_to(target: Vector3, duration: float = 0.9) -> void:
 	is_flying = true
 	carrier = null
 	cancel_fuse()
+	if anim_player:
+		if anim_player.has_animation("fly"):
+			anim_player.play("fly")
+		else:
+			anim_player.stop()
 
 	freeze = true
 	freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
