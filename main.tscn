@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bfm5rx0cu2mkw" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dgemcm1tnj5ts" path="res://Truck/truck.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cbmxnb833xyuo" path="res://Chicken/chicken.tscn" id="2_0xm2m"]
+[ext_resource type="AudioStream" uid="uid://cya8huwvaewt5" path="res://assets/audio/shepherd_dog.ogg" id="2_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cnbnwoe6yhv18" path="res://Map/terrain_3d.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cy7001j3yvkhp" path="res://InteractingAreas/Farm/farm.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://chl4a5j0q4ulh" path="res://InteractingAreas/Deposit/deposit.tscn" id="5_lquwl"]
@@ -17,6 +18,7 @@ ambient_light_energy = 0.3
 
 [node name="Main" type="Node3D" unique_id=1107903929]
 script = ExtResource("1_7mycd")
+musics = Array[AudioStream]([ExtResource("2_4c57u")])
 
 [node name="Truck" parent="." unique_id=361269358 node_paths=PackedStringArray("spawn_point") instance=ExtResource("1_ig7tw")]
 transform = Transform3D(0.25180367, 0.025939211, -0.96743065, -0.055612326, 0.9983767, 0.0122941295, 0.9661792, 0.05070536, 0.25283748, -159.13245, 1.7683482, 410.8501)
@@ -56,3 +58,6 @@ transform = Transform3D(-0.43647432, 0, 0.8997167, 0, 1, 0, -0.8997167, 0, -0.43
 
 [node name="low+poly+farm2" parent="." unique_id=1001209114 instance=ExtResource("9_kek77")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -186.14284, -4.62708, 431.09503)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1619086906]
+bus = &"Music"
