@@ -6,6 +6,7 @@ cd "$(dirname "$0")"
 
 GODOT="godot"
 BUILD_DIR="builds"
+PROJECT_NAME="eggspress"
 
 # Preset name -> output filename
 declare -A EXPORTS=(
@@ -33,7 +34,7 @@ for preset in "${!EXPORTS[@]}"; do
     echo "==> Zipping $preset..."
     (
         cd "$output_dir"
-        zip -qr "../${preset}.zip" .
+        zip -qr "../${PROJECT_NAME}-${preset}.zip" .
     )
 done
 
