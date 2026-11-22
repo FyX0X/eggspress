@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdqamr6bkkmcr"
 path.s3tc="res://.godot/imported/factory_PUSHILIN_factory.png-b5e47c8b55e7097f9065d48ef168d15a.s3tc.ctex"
+path.etc2="res://.godot/imported/factory_PUSHILIN_factory.png-b5e47c8b55e7097f9065d48ef168d15a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/factory_PUSHILIN_factory.png"
-dest_files=["res://.godot/imported/factory_PUSHILIN_factory.png-b5e47c8b55e7097f9065d48ef168d15a.s3tc.ctex"]
+dest_files=["res://.godot/imported/factory_PUSHILIN_factory.png-b5e47c8b55e7097f9065d48ef168d15a.s3tc.ctex", "res://.godot/imported/factory_PUSHILIN_factory.png-b5e47c8b55e7097f9065d48ef168d15a.etc2.ctex"]
 
 [params]
 

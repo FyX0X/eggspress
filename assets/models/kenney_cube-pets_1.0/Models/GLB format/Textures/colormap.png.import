@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvvjs13pg3jkh"
 path.s3tc="res://.godot/imported/colormap.png-daf3a19b09d9d9658415d9f7ea95936b.s3tc.ctex"
+path.etc2="res://.godot/imported/colormap.png-daf3a19b09d9d9658415d9f7ea95936b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/kenney_cube-pets_1.0/Models/GLB format/Textures/colormap.png"
-dest_files=["res://.godot/imported/colormap.png-daf3a19b09d9d9658415d9f7ea95936b.s3tc.ctex"]
+dest_files=["res://.godot/imported/colormap.png-daf3a19b09d9d9658415d9f7ea95936b.s3tc.ctex", "res://.godot/imported/colormap.png-daf3a19b09d9d9658415d9f7ea95936b.etc2.ctex"]
 
 [params]
 

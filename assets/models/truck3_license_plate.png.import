@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://xdxondfqqyda"
 path.s3tc="res://.godot/imported/truck3_license_plate.png-187f0c908d510d2d4c80ba47faf7dcc5.s3tc.ctex"
+path.etc2="res://.godot/imported/truck3_license_plate.png-187f0c908d510d2d4c80ba47faf7dcc5.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/truck3_license_plate.png"
-dest_files=["res://.godot/imported/truck3_license_plate.png-187f0c908d510d2d4c80ba47faf7dcc5.s3tc.ctex"]
+dest_files=["res://.godot/imported/truck3_license_plate.png-187f0c908d510d2d4c80ba47faf7dcc5.s3tc.ctex", "res://.godot/imported/truck3_license_plate.png-187f0c908d510d2d4c80ba47faf7dcc5.etc2.ctex"]
 
 [params]
 
